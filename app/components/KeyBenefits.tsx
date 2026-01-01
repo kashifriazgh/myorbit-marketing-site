@@ -18,7 +18,7 @@ const benefits: Benefit[] = [
     id: 1,
     title: 'Journaling',
     description:
-      'Plan each day with clear schedules so you never miss a task, routine, or important activity.',
+      'Write down your thoughts, experiences, and important moments from your day so you can reflect on them anytime in the future.',
   },
   {
     id: 2,
@@ -150,9 +150,9 @@ export default function KeyBenefits() {
             Key Benefits that keep everything in motion
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Every module feeds the homepage, so you always see today, the next 3
-            days, overdue work, upcoming income and expenses, streaks, and quick
-            AI suggestions.
+            Every module feeds the homepage, so you always see ongoing and 
+            overdue tasks, upcoming income and expenses, streaks, schedules, monthly
+            shopping plans and more at homepage.
           </p>
         </div>
 

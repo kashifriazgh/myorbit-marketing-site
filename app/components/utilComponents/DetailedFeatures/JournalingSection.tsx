@@ -28,12 +28,7 @@ const journalingBenefits = [
     description:
       'Over time, your journaling becomes a living record — a timeline of your experiences, ideas, and learnings.',
   },
-  {
-    icon: <Lightbulb className="w-6 h-6 text-pink-500" />,
-    title: 'Get insights from your past',
-    description:
-      'AI can analyze your past notes to reveal patterns — helping you remember lessons, make better choices, and stay consistent.',
-  },
+ 
 ];
 
 export default function JournalingSection() {
@@ -48,8 +43,7 @@ export default function JournalingSection() {
             transition={{ duration: 0.6 }}
             className="text-4xl font-bold text-gray-900 dark:text-white leading-tight"
           >
-            Journaling is your intelligent archive — searchable, beautiful, and
-            AI-polished
+           Write down your thoughts (Notes) and Ideas in one simple place. 
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, x: -20 }}
@@ -57,17 +51,17 @@ export default function JournalingSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
           >
-            Every note you write is indexed by people, places, prices, emotions,
-            and hashtags. When you need “cement rate Lahore March”, it appears
-            instantly — with AI-summarized context.
+           Write your daily reflections with a title, details, emotion, and tags. Your entries are saved
+  securely and can be searched later by text or date — so important thoughts
+  are never lost.
           </motion.p>
 
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              'Context tags & filters',
-              'Rewrite to formal/friendly tone',
+              'Searchable',
+              'Enhance text with AI',
               'Emoji enrichment',
-              'Quick share as PDF',
+              
             ].map((tag) => (
               <span
                 key={tag}

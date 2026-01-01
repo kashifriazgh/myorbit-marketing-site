@@ -7,17 +7,17 @@ import { motion } from 'framer-motion';
 const goalSteps = [
   {
     title: 'Define a clear target value',
-    desc: 'Revenue, Quran pages, gym reps — the metric is yours.',
+    desc: 'Save Rs. 10,000 , Read 100 pages , 50 social media posts — the metric is yours.',
     badge: 'Step 01',
   },
   {
     title: 'Break it down automatically',
-    desc: 'AI proposes milestones and ties existing tasks as checkpoints.',
+    desc: 'Split it into milestones manually or get automatically suggested by App.',
     badge: 'Step 02',
   },
   {
     title: 'Review momentum weekly',
-    desc: 'Progress bars + streak indicators flag which goals are slipping.',
+    desc: 'Motivate yourself by setting a deadline. See the progress daily and never slip from the target.',
     badge: 'Step 03',
   },
 ];
@@ -39,15 +39,16 @@ export default function GoalsSection() {
               Goals
             </span>
             <h2 className="mt-4 text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-              Visualize goals as living cards with targets, progress, and focus
-              alerts
-            </h2>
+  Set clear goals, break them into steps, and track progress
+</h2>
+
           </div>
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            Goals feed the home dashboard and Tasks module automatically. You
-            always see the delta between where you are and where you said you’d
-            be — with nudges when you fall behind.
-          </p>
+  Set a goal, define a target, and break it into milestones. Your progress
+  updates automatically as you complete steps, so you always know where you
+  stand.
+</p>
+
 
           <div className="space-y-4">
             {goalSteps.map((step, idx) => (
@@ -86,7 +87,7 @@ export default function GoalsSection() {
           <div className="absolute -bottom-12 -left-4 w-44 h-44 bg-emerald-300/40 blur-3xl" />
           <div className="relative rounded-[32px] border border-white shadow-[0_30px_120px_-60px_rgba(6,182,212,0.9)] bg-white/95 dark:bg-gray-900/80 backdrop-blur-xl p-6 space-y-4">
             <Image
-              src="/static-images/key-benefits/goals-preview.png"
+              src="/static-images/key-benefits/goals detailed.png"
               alt="Goals feature preview"
               width={520}
               height={360}

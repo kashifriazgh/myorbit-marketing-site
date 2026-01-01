@@ -15,7 +15,7 @@ const audiences: Audience[] = [
     id: 1,
     title: 'College & University Students',
     description:
-      'Stay on top of assignments, exams, and personal goals with structured planning and motivation.',
+      'Stay on top of personal goals with structured study planning and motivation.',
     icon: <GraduationCap className="w-8 h-8 text-blue-600" />,
   },
   {
@@ -29,9 +29,10 @@ const audiences: Audience[] = [
     id: 3,
     title: 'Job Seekers & Professionals',
     description:
-      'Track job applications, interviews, and career goals with clear timelines and reminders.',
+      'Be disciplined by planning your tasks and building productive habits to achieve your career goals and professional growth.',
     icon: <Target className="w-8 h-8 text-orange-600" />,
-  },
+  }
+,  
   {
     id: 4,
     title: 'Personal Growth Enthusiasts',
@@ -62,13 +63,11 @@ export default function TargetAudience() {
             ideal users
           </span>
           <h2 className="text-4xl font-bold mt-6">
-            Built for people who plan, review, and grow every day
-          </h2>
+          Built for people who love to plan, achieve, and celebrate every day</h2>
           <p className="text-slate-200 text-lg max-w-3xl mx-auto mt-4">
-            Whether you are a student mapping exams, a freelancer coordinating
-            multiple clients, or a personal-growth enthusiast building rituals —
-            each component adapts to the way you work.
-          </p>
+  Whether you’re a student, a freelancer, or someone who loves personal growth, every tool adapts to how you plan, track, and achieve.
+</p>
+
         </div>
 
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">

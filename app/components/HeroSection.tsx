@@ -45,9 +45,9 @@ const HeroSection = () => {
   ];
 
   const heroHighlights = [
-    { title: 'Everything in one App', badge: '9 modules' },
-    { title: 'AI speeds up input', badge: '62% less typing' },
-    { title: 'Fully personal setup', badge: 'Your own Firebase & Netlify' },
+    { title: 'Everything in one App', badge: '9 helpful tools' },
+    { title: 'AI speeds up input', badge: '50% less typing' },
+    { title: 'Fully personal setup', badge: 'Your own DB & Hosting' },
   ];
 
   return (
@@ -62,7 +62,7 @@ const HeroSection = () => {
               Personal Productivity App
             </span>
             <h1 className="text-4xl sm:text-5xl font-black leading-tight">
-              Plan your each activity with minimal manual effort.
+              Plan your daily activities with minimum manual effort.
             </h1>
           </div>
 
@@ -71,7 +71,9 @@ const HeroSection = () => {
             tasks, goals, finances, journaling, shopping lists and more — all
             powered by contextual AI helpers so you never start from scratch.
           </p>
-
+          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-cyan-300  rounded-full px-4 py-1 mb-4">
+              This App offers to do following things:
+            </span>
           <div className="flex flex-wrap gap-3">
             {[
               'Tasks',

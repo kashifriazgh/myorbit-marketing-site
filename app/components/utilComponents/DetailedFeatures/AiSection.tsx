@@ -156,7 +156,7 @@ export default function AISection() {
         {/* --- Right Column: Image --- */}
         <div className="md:w-1/2 w-full flex justify-center">
           <Image
-            src="/static-images/key-benefits/ai-assistant.png"
+            src="/static-images/key-benefits/animated/quick editor.gif"
             alt="AI assistant feature preview"
             width={550}
             height={400}

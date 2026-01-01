@@ -4,11 +4,12 @@ import Image from 'next/image';
 import React from 'react';
 
 const streakHighlights = [
-  'Supports daily, weekly, and monthly cadences with auto reminders.',
-  'Record progress text (e.g., “10 pages read”) even if you don’t complete the streak.',
-  'Timeline view shows wins, gaps, and longest streak for motivation.',
-  'Home dashboard mirrors today’s streaks so nothing slips.',
+  'Set habits for every day, week, or month and get optional reminders.',
+  'Log your progress anytime, even if the habit isn’t fully done (e.g., “Read 10 pages”).',
+  'See your streak history at a glance — wins, missed days, and longest streak.',
+  'Check today’s habits right from the homepage so you never forget.'
 ];
+
 
 export default function StreaksSection() {
   return (
@@ -20,12 +21,10 @@ export default function StreaksSection() {
             Streaks
           </span>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-            Convert rituals into visual streaks and never lose momentum
+          Track habits and see your progress every day
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            Ideal for Quran recitation, workouts, writing, or study habits. Mark
-            “done” or log partial progress, and the system keeps the timeline
-            honest.
+          Create habits like Quran recitation, workouts, or study sessions. Update them when you make progress and see your streak grow over time
           </p>
           <div className="grid gap-3">
             {streakHighlights.map((item) => (
@@ -47,7 +46,7 @@ export default function StreaksSection() {
           <div className="absolute -bottom-12 -left-4 w-40 h-40 bg-slate-300/40 blur-3xl" />
           <div className="relative rounded-[32px] border border-white shadow-[0_30px_120px_-50px_rgba(16,185,129,0.7)] bg-white/90 dark:bg-gray-900/80 backdrop-blur-xl p-6 space-y-4">
             <Image
-              src="/static-images/key-benefits/streaks-progress.png"
+              src="/static-images/key-benefits/streaks.png"
               alt="Streaks feature preview"
               width={520}
               height={360}

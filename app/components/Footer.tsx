@@ -12,7 +12,7 @@ export default function Footer() {
             MyOrbit
           </h3>
           <p className="text-sm text-slate-400 max-w-xl">
-            Personal productivity OS with AI-assisted inputs, finance awareness,
+            Personal productivity App with AI-assisted inputs, finance awareness,
             streak tracking, and a quick editor that keeps your day honest.
           </p>
         </div>
@@ -24,9 +24,7 @@ export default function Footer() {
           <Link href="/privacy" className="hover:text-white transition">
             Privacy
           </Link>
-          <Link href="/contact" className="hover:text-white transition">
-            Contact
-          </Link>
+         
         </nav>
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />

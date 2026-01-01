@@ -11,10 +11,23 @@ import {
 } from 'lucide-react';
 
 const highlights = [
-  { label: '24H timeline', detail: 'Past hours fade, next hours stay bold.' },
-  { label: 'Auto stacking', detail: 'Clashes reflow instantly, no overlaps.' },
-  { label: 'AI nudges', detail: 'Slots get suggestions based on habits.' },
+  {
+    label: 'Clear time view',
+    detail:
+      'Past activities fade out, while upcoming ones stay clearly visible.',
+  },
+  {
+    label: 'Automatic time sorting',
+    detail:
+      'Schedule items are always arranged by time, even if you add them later.',
+  },
+  {
+    label: 'Helpful suggestions',
+    detail:
+      'Receive smart tips based on how you usually plan your day.',
+  },
 ];
+
 
 export default function SchedulesSection() {
   return (
@@ -29,13 +42,13 @@ export default function SchedulesSection() {
             Schedules
           </div>
           <h2 className="text-4xl font-bold leading-tight">
-            Design your entire day, see conflicts, and free up mental load
+          Turn your daily activities into a clear schedule
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            The vertical planner mirrors the way you think—hour-by-hour. Past
-            segments fade out, upcoming segments glow, and recurring routines
-            slot themselves so you’re never dragging boxes around.
-          </p>
+<p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+  Create and manage your daily schedule in one place. Plan today and the next
+  four days, see everything at a glance, and stay focused without forgetting
+  important activities.
+</p>
 
           <div className="grid gap-3">
             {highlights.map((item) => (
@@ -56,29 +69,7 @@ export default function SchedulesSection() {
             ))}
           </div>
 
-          <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-            <li className="flex gap-3">
-              <Repeat className="w-5 h-5 text-emerald-500 mt-1" />
-              <span>
-                Recurring templates for office, study, or prayer times keep base
-                routines intact.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <ArrowUpDown className="w-5 h-5 text-emerald-500 mt-1" />
-              <span>
-                Drag hours to reshuffle the entire day; the timeline
-                auto-adjusts durations.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <Sparkles className="w-5 h-5 text-emerald-500 mt-1" />
-              <span>
-                AI suggests recovery breaks or prep slots when it detects
-                back-to-back commitments.
-              </span>
-            </li>
-          </ul>
+         
         </div>
 
         {/* Visual */}

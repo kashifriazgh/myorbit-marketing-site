@@ -24,6 +24,17 @@ export default function DetailedBenefits() {
           limits all connect back to your homepage view.
         </p>
       </div>
+      <div className="max-w-3xl mx-auto text-center px-6 mb-12">
+  <p className="text-emerald-600 dark:text-emerald-400 text-2xl font-medium tracking-wide">
+    A closer look
+  </p>
+  <p className="mt-2 text-gray-700 dark:text-gray-300 text-lg">
+  Below is a closer look at each section, showing how every tool works on its own
+  while staying connected to your daily overview.
+  </p>
+</div>
+
+
 
       <div className="space-y-16">
         <AISection />

@@ -5,10 +5,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const taskBenefits = [
-  'Tasks auto-group into Today, Next 3 days, and Later so you see immediate priorities.',
-  'Sub-steps sit under each task with AI-generated checklists to avoid missing details.',
-  'Progress rings and overdue counters surface the work that needs escalation.',
-  'Priority, energy level, and estimated minutes make it easy to slot tasks into the schedule.',
+  'Create tasks with optional details like description, steps, due date, and priority.',
+  'Break tasks into small steps that you can add or remove anytime.',
+  'See ongoing and overdue tasks on your homepage, so nothing gets missed.',
+  'Reschedule tasks easily when plans change, without losing progress.',
 ];
 
 export default function TasksSection() {
@@ -25,17 +25,16 @@ export default function TasksSection() {
         >
           <div>
             <span className="inline-flex px-4 py-1 rounded-full text-xs uppercase tracking-[0.35em] bg-sky-100 text-sky-600 dark:bg-sky-900/40 dark:text-sky-300">
-              Tasks OS
+              Tasks
             </span>
             <h2 className="mt-4 text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-              Capture tasks with natural text and let the system build the rest
-            </h2>
+            Keep track of ongoing and overdue tasks from your homepage            </h2>
           </div>
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            Type “@task Finish proposal tomorrow // steps send draft, review
-            with Ali” and the board formats everything, assigns dates, and links
-            it to the right goal. No manual copy-paste.
-          </p>
+  Add tasks with optional details like steps, due dates, and priority.
+  Update them anytime, reschedule when plans change, and keep track of
+  what’s ongoing, overdue, or completed.
+</p>
           <div className="space-y-4">
             {taskBenefits.map((benefit, idx) => (
               <motion.div

@@ -50,12 +50,11 @@ export default function FinanceSection() {
               Finance layer
             </span>
             <h2 className="mt-4 text-4xl font-bold leading-tight">
-              Stay cash-aware across cash, wallets, banks, and future impact
+              Manage your incomes, expenses, loans and saving in one place.
             </h2>
           </div>
           <p className="text-slate-200 text-lg leading-relaxed">
-            Log incomes, recurring bills, shopping budgets, and loan give/take
-            in one place. The 15/30/45 day outlook projects your balance so you
+            Keep a record of your transactions, and a strong eye on your current and upcoming expenses and incomes and other money related activities. 
             plan ahead — not react later.
           </p>
 

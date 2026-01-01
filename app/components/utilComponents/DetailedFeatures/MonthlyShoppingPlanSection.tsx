@@ -47,17 +47,14 @@ export default function MonthlyShoppingPlanSection() {
         >
           <div>
             <span className="inline-flex px-4 py-1 rounded-full text-xs uppercase tracking-[0.35em] border border-white/20 text-indigo-200">
-              Shopping HQ
+              Shopping
             </span>
             <h2 className="mt-4 text-4xl font-bold leading-tight">
-              Forecast spending, enforce limits, and know when you’re
-              overshooting
+            Create shopping lists and track your spending instantly
             </h2>
           </div>
           <p className="text-slate-200 text-lg leading-relaxed">
-            Build an itemized list, set a ceiling, and let the system warn you
-            the second purchased items exceed it. Each list shows “planned vs
-            spent” with reminders to stay disciplined.
+          Make monthly or general shopping lists, mark items as bought, and see your total spending. Set a budget limit and track remaining items and money at a glance.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

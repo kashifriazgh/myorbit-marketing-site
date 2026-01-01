@@ -30,8 +30,8 @@ export default function Pricing() {
       title: 'WhatsApp Messaging Service',
       description:
         'Enable WhatsApp messaging automation (e.g., task alerts, reminders, confirmations).',
-      price: '₨ 200 / month',
-      note: 'Covers approx. 30 conversations / month',
+      price: '₨ 300 / month',
+      note: 'Covers approx. 30 conversations / month. Whatsapp Business Verfication is required for this service',
       icon: <MessageCircle className="w-10 h-10 text-teal-600" />,
       highlight: false,
     },
