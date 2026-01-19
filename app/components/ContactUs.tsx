@@ -24,7 +24,7 @@ const ContactUs = () => {
     text: string;
   } | null>(null);
 
-  const [callNumber, setCallNumber] = useState('');
+  const [callRequest, setCallRequest] = useState('');
   const [callLoading, setCallLoading] = useState(false);
   const [callFeedback, setCallFeedback] = useState<{
     type: 'success' | 'error';
@@ -73,7 +73,26 @@ const ContactUs = () => {
       await addDoc(collection(db, 'messages'), {
         ...messageForm,
         submittedAt: serverTimestamp(),
+        read: false,
+        done: false,
       });
+      
+      // Send push notification
+      try {
+        await fetch('/api/send-notification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'message',
+            message: `New message from ${messageForm.name}`,
+            url: `https://myorbit.site/dashboard/view`,
+          }),
+        });
+      } catch (notifError) {
+        console.error('Failed to send notification:', notifError);
+        // Don't fail the form submission if notification fails
+      }
+      
       setMessageFeedback({
         type: 'success',
         text: 'Thanks! Your message has been sent.',
@@ -92,10 +111,10 @@ const ContactUs = () => {
 
   const handleCallSubmit = async () => {
     setCallFeedback(null);
-    if (!isValidPhone(callNumber)) {
+    if (!callRequest.trim()) {
       setCallFeedback({
         type: 'error',
-        text: 'Enter a valid Pakistani mobile number.',
+        text: 'Please provide your contact information.',
       });
       return;
     }
@@ -103,14 +122,33 @@ const ContactUs = () => {
     try {
       setCallLoading(true);
       await addDoc(collection(db, 'call requests'), {
-        phone: callNumber.trim(),
+        request: callRequest.trim(),
         submittedAt: serverTimestamp(),
+        read: false,
+        done: false,
       });
+      
+      // Send push notification
+      try {
+        await fetch('/api/send-notification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'call_request',
+            message: 'New call request received',
+            url: `https://myorbit.site/dashboard/view`,
+          }),
+        });
+      } catch (notifError) {
+        console.error('Failed to send notification:', notifError);
+        // Don't fail the form submission if notification fails
+      }
+      
       setCallFeedback({
         type: 'success',
         text: 'Thanks! We will reach out shortly.',
       });
-      setCallNumber('');
+      setCallRequest('');
     } catch (error) {
       console.error('Error adding call request:', error);
       setCallFeedback({
@@ -226,23 +264,16 @@ const ContactUs = () => {
             <Phone className="w-10 h-10 text-teal-300" />
             <h3 className="text-xl font-semibold">Request a call back</h3>
             <p className="text-sm text-slate-200">
-              Drop your Pakistani number and we will call or WhatsApp you
-              shortly.
+              Share your contact details and any specific requirements. We will call or WhatsApp you shortly.
             </p>
-            <div className="flex w-full gap-3">
-              <span className="flex items-center px-3 rounded-2xl bg-white/10 border border-white/20">
-                +92
-              </span>
-              <input
-                type="tel"
-                placeholder="3XXXXXXXXX"
-                value={callNumber}
-                onChange={(e) => setCallNumber(e.target.value)}
-                className="w-full rounded-2xl border border-white/20 bg-transparent px-4 py-3 focus:ring-2 focus:ring-teal-400 outline-none"
-                pattern="[0-9]{10}"
-                maxLength={10}
-              />
-            </div>
+            <textarea
+              placeholder="Your contact number, email, or any additional information..."
+              rows={5}
+              value={callRequest}
+              onChange={(e) => setCallRequest(e.target.value)}
+              className="w-full rounded-2xl border border-white/20 bg-transparent px-4 py-3 focus:ring-2 focus:ring-teal-400 outline-none resize-none"
+              required
+            />
             <button
               onClick={handleCallSubmit}
               disabled={callLoading}
