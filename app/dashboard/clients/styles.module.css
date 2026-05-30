@@ -1,0 +1,147 @@
+.container {
+  padding: 28px;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial;
+  color: #0f172a;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+.subtle {
+  color: #475569;
+  font-size: 13px;
+}
+.panel {
+  background: #ffffff;
+  border: 1px solid #e6eef6;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+  border-radius: 12px;
+  padding: 16px;
+}
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1e3f0;
+  background: #fbfdff;
+  font-size: 14px;
+  color: #0f172a;
+}
+.textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.buttonPrimary {
+  background: linear-gradient(90deg, #0ea5e9, #3b82f6);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.buttonSecondary {
+  background: transparent;
+  border: 1px solid #cfe9ff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+.searchInput {
+  flex: 1;
+}
+.list {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+.card {
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #eef6fb;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+}
+.meta {
+  color: #475569;
+  font-size: 13px;
+}
+.viewLink {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f1f9ff;
+  color: #0369a1;
+  border: 1px solid #d6eefb;
+  font-weight: 600;
+}
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+}
+.small {
+  font-size: 13px;
+  color: #475569;
+}
+.fieldRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+.copyButton {
+  background: #0ea5e9;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.backLink {
+  color: #0369a1;
+  text-decoration: none;
+  font-weight: 600;
+}
+.empty {
+  color: #94a3b8;
+  padding: 18px;
+  text-align: center;
+}
