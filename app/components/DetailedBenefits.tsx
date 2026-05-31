@@ -7,6 +7,7 @@ import MonthlyShoppingPlanSection from './utilComponents/DetailedFeatures/Monthl
 import StreaksSection from './utilComponents/DetailedFeatures/StreaksSection';
 import AISection from './utilComponents/DetailedFeatures/AiSection';
 import JournalingSection from './utilComponents/DetailedFeatures/JournalingSection';
+import { motion } from 'framer-motion';
 
 export default function DetailedBenefits() {
   return (
@@ -25,16 +26,14 @@ export default function DetailedBenefits() {
         </p>
       </div>
       <div className="max-w-3xl mx-auto text-center px-6 mb-12">
-  <p className="text-emerald-600 dark:text-emerald-400 text-2xl font-medium tracking-wide">
-    A closer look
-  </p>
-  <p className="mt-2 text-gray-700 dark:text-gray-300 text-lg">
-  Below is a closer look at each section, showing how every tool works on its own
-  while staying connected to your daily overview.
-  </p>
-</div>
-
-
+        <p className="text-emerald-600 dark:text-emerald-400 text-2xl font-medium tracking-wide">
+          A closer look
+        </p>
+        <p className="mt-2 text-gray-700 dark:text-gray-300 text-lg">
+          Below is a closer look at each section, showing how every tool works
+          on its own while staying connected to your daily overview.
+        </p>
+      </div>
 
       <div className="space-y-16">
         <AISection />

@@ -1,15 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { CreateClientPage } from '@/app/dashboard/clients/client-form';
 
 export default function NewClientPage() {
   const router = useRouter();
 
-  return (
-    <CreateClientPage
-      onBack={() => router.push('/dashboard/clients')}
-      onSaved={() => undefined}
-    />
-  );
+  useEffect(() => {
+    router.replace('/dashboard/clients?new=true');
+  }, [router]);
+
+  return null;
 }

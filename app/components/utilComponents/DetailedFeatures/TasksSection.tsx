@@ -5,10 +5,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const taskBenefits = [
-  'Create tasks with optional details like description, steps, due date, and priority.',
-  'Break tasks into small steps that you can add or remove anytime.',
-  'See ongoing and overdue tasks on your homepage, so nothing gets missed.',
-  'Reschedule tasks easily when plans change, without losing progress.',
+  'Split any big responsibility into small, manageable steps — tackle them one at a time without feeling overwhelmed.',
+  'Assign a task to someone else and auto-send them a WhatsApp reminder so the right person never forgets their part.',
+  'Get notified when a deadline is near — via WhatsApp or push notification — so you always act on time.',
+  'Reschedule with one tap when plans change, and stay focused on what matters most by setting task priority.',
 ];
 
 export default function TasksSection() {
@@ -28,13 +28,14 @@ export default function TasksSection() {
               Tasks
             </span>
             <h2 className="mt-4 text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-            Keep track of ongoing and overdue tasks from your homepage            </h2>
+              Keep track of ongoing and overdue tasks from your homepage{' '}
+            </h2>
           </div>
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-  Add tasks with optional details like steps, due dates, and priority.
-  Update them anytime, reschedule when plans change, and keep track of
-  what’s ongoing, overdue, or completed.
-</p>
+            Add tasks with optional details like steps, due dates, and priority.
+            Update them anytime, reschedule when plans change, and keep track of
+            what’s ongoing, overdue, or completed.
+          </p>
           <div className="space-y-4">
             {taskBenefits.map((benefit, idx) => (
               <motion.div

@@ -2,32 +2,25 @@
 
 import Image from 'next/image';
 import React from 'react';
-import {
-  CalendarDays,
-  Repeat,
-  Sparkles,
-  ArrowUpDown,
-  Clock,
-} from 'lucide-react';
+import { CalendarDays, Clock } from 'lucide-react';
 
 const highlights = [
   {
-    label: 'Clear time view',
+    label: 'Today + next 4 days at a glance',
     detail:
-      'Past activities fade out, while upcoming ones stay clearly visible.',
+      'See your full schedule for today and the next four days in one clear view — no digging around.',
   },
   {
-    label: 'Automatic time sorting',
+    label: 'WhatsApp & push reminders',
     detail:
-      'Schedule items are always arranged by time, even if you add them later.',
+      'Set reminders for any activity and get notified on WhatsApp or as a browser push — so nothing slips.',
   },
   {
-    label: 'Helpful suggestions',
+    label: 'Edit & reschedule anytime',
     detail:
-      'Receive smart tips based on how you usually plan your day.',
+      'Plans change. Update or move any activity in seconds and your schedule stays accurate.',
   },
 ];
-
 
 export default function SchedulesSection() {
   return (
@@ -41,14 +34,17 @@ export default function SchedulesSection() {
             <CalendarDays className="w-4 h-4" />
             Schedules
           </div>
+
           <h2 className="text-4xl font-bold leading-tight">
-          Turn your daily activities into a clear schedule
+            Laziness comes when there is no clear plan. Start planning your day
+            with schedules.
           </h2>
-<p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-  Create and manage your daily schedule in one place. Plan today and the next
-  four days, see everything at a glance, and stay focused without forgetting
-  important activities.
-</p>
+
+          <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+            Stop relying on memory. When your day is laid out in front of you,
+            you always know what to do next — no last-minute rush, no forgotten
+            tasks, no wasted time figuring out where to start.
+          </p>
 
           <div className="grid gap-3">
             {highlights.map((item) => (
@@ -68,8 +64,6 @@ export default function SchedulesSection() {
               </div>
             ))}
           </div>
-
-         
         </div>
 
         {/* Visual */}
@@ -92,9 +86,9 @@ export default function SchedulesSection() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span>Prep buffer inserted</span>
+                <span>Reminder set</span>
                 <span className="text-xs uppercase tracking-wide text-emerald-500">
-                  AI suggestion
+                  WhatsApp + Push
                 </span>
               </div>
             </div>

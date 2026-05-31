@@ -1,301 +1,383 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
-import { useKeenSlider } from 'keen-slider/react';
-import 'keen-slider/keen-slider.min.css';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+interface SubFeature {
+  label: string;
+}
 
 interface Benefit {
   id: number;
+  icon: string;
   title: string;
   description: string;
-  image?: string;
+  textAccent: string;
+  borderAccent: string;
+  bgAccent: string;
+  glowColor: string;
+  subFeatures?: SubFeature[];
 }
 
+// ─── Data ─────────────────────────────────────────────────────────────────────
 const benefits: Benefit[] = [
   {
     id: 1,
-    title: 'Journaling',
+    icon: '📔',
+    title: 'Daily Journal',
     description:
-      'Write down your thoughts, experiences, and important moments from your day so you can reflect on them anytime in the future.',
+      'Capture thoughts, experiences and reflections as a private digital diary. AI polishes your writing — fixing grammar, adding clarity and inserting relevant emojis.',
+    textAccent: 'text-violet-300',
+    borderAccent: 'border-violet-500/40',
+    bgAccent: 'bg-violet-500/10',
+    glowColor: '#7c3aed',
+    subFeatures: [
+      { label: 'AI grammar & style fix' },
+      { label: 'Emoji suggestions' },
+      { label: 'Daily reflection prompts' },
+    ],
   },
   {
     id: 2,
+    icon: '✅',
     title: 'Tasks',
     description:
-      'Write down daily, weekly, or monthly tasks, prioritize them, and track their progress effortlessly.',
+      'Create tasks with rich steps and sub-steps. AI generates a full action plan from just a title — focus on doing, not planning.',
+    textAccent: 'text-cyan-300',
+    borderAccent: 'border-cyan-500/40',
+    bgAccent: 'bg-cyan-500/10',
+    glowColor: '#0891b2',
+    subFeatures: [
+      { label: 'AI-generated steps from title' },
+      { label: 'Sub-step nesting' },
+      { label: 'Daily / weekly / monthly' },
+      { label: 'WhatsApp & push reminders' },
+    ],
   },
   {
     id: 3,
+    icon: '🎯',
     title: 'Goals',
     description:
-      'Set meaningful goals and achieve them step by step. Link your tasks as milestones to monitor productivity over time.',
+      'Set meaningful goals with target values and live progress tracking. Link tasks as milestones and watch progress cards update on your homepage.',
+    textAccent: 'text-emerald-300',
+    borderAccent: 'border-emerald-500/40',
+    bgAccent: 'bg-emerald-500/10',
+    glowColor: '#059669',
+    subFeatures: [
+      { label: 'Progress cards on homepage' },
+      { label: 'Target value tracking' },
+      { label: 'Task milestone linking' },
+    ],
   },
   {
     id: 4,
-    title: 'Monthly Shopping Plans',
+    icon: '💰',
+    title: 'Finance',
     description:
-      'List the items you need to buy each month, manage your spending and budget, and keep track of your purchases easily.',
+      'A full personal finance hub — cash in hand, income & expenses, loans, shopping budgets and a 60-day financial forecast after every 15 days.',
+    textAccent: 'text-amber-300',
+    borderAccent: 'border-amber-500/40',
+    bgAccent: 'bg-amber-500/10',
+    glowColor: '#d97706',
+    subFeatures: [
+      { label: 'Overall budget & cash held' },
+      { label: 'Income & expense records' },
+      { label: 'Loan tracker (lent & borrowed)' },
+      { label: 'Shopping lists with budget limits' },
+      { label: '60-day financial forecast' },
+    ],
   },
   {
     id: 5,
+    icon: '🔥',
     title: 'Streaks',
     description:
-      'Build positive habits by setting daily or weekly streaks. Track your consistency and watch your growth over time.',
+      'Build positive habits with daily and weekly streaks. Mark each day done, track consistency scores and keep them front-and-centre on the homepage.',
+    textAccent: 'text-orange-300',
+    borderAccent: 'border-orange-500/40',
+    bgAccent: 'bg-orange-500/10',
+    glowColor: '#ea580c',
+    subFeatures: [
+      { label: 'Daily & weekly habit tracking' },
+      { label: 'Current streak display' },
+      { label: 'Homepage summary strip' },
+    ],
   },
   {
     id: 6,
+    icon: '🕐',
     title: 'Time Table',
     description:
-      'Set custom timetables for your daily routines, such as office, college, or nearby Masjid Salah times.',
+      'Create recurring timetables for fixed routines — office hours, Salah times, college classes — and let them auto-merge into your daily schedule.',
+    textAccent: 'text-sky-300',
+    borderAccent: 'border-sky-500/40',
+    bgAccent: 'bg-sky-500/10',
+    glowColor: '#0284c7',
+    subFeatures: [
+      { label: 'Recurring daily routines' },
+      { label: 'Salah / prayer time support' },
+      { label: 'Auto-merge with schedules' },
+    ],
   },
   {
     id: 7,
-    title: 'Finance',
+    icon: '📅',
+    title: 'Schedules',
     description:
-      'Manage your overall budget and cash flow. Keep records of income, expenses, and any loans you’ve lent or borrowed.',
+      'Plan your 24 hrs in a clean vertical stepper view. Schedules show on the homepage for the next 5 days with WhatsApp and push notification reminders.',
+    textAccent: 'text-teal-300',
+    borderAccent: 'border-teal-500/40',
+    bgAccent: 'bg-teal-500/10',
+    glowColor: '#0d9488',
+    subFeatures: [
+      { label: '5-day homepage view' },
+      { label: 'WhatsApp reminders' },
+      { label: 'Firebase push notifications' },
+      { label: 'Duration & time blocks' },
+    ],
   },
   {
     id: 8,
-    title: 'AI',
+    icon: '🗂️',
+    title: 'Projects',
     description:
-      'Our intelligent AI assistant helps you plan smarter, stay consistent, and achieve higher productivity every day.',
+      'Create project workspaces with multiple agendas. Each agenda holds tasks, schedules, goals, streaks and plain notes — all in one focused place.',
+    textAccent: 'text-indigo-300',
+    borderAccent: 'border-indigo-500/40',
+    bgAccent: 'bg-indigo-500/10',
+    glowColor: '#4338ca',
+    subFeatures: [
+      { label: 'Multiple agendas per project' },
+      { label: 'Tasks, goals & streaks inside' },
+      { label: 'Schedules & plain notes' },
+    ],
+  },
+  {
+    id: 9,
+    icon: '📝',
+    title: 'Quick Notes',
+    description:
+      'A rich text input pinned at the top of every page. Capture ideas instantly with formatting — no extra screens, no context switching, no friction.',
+    textAccent: 'text-rose-300',
+    borderAccent: 'border-rose-500/40',
+    bgAccent: 'bg-rose-500/10',
+    glowColor: '#e11d48',
+    subFeatures: [
+      { label: 'Always-visible top bar' },
+      { label: 'Rich text formatting' },
+      { label: 'Instant save' },
+    ],
+  },
+  {
+    id: 10,
+    icon: '✨',
+    title: 'AI Assistant',
+    description:
+      'Every section has a context-aware AI helper. Generate task steps, polish journal entries, get finance insights and brainstorm ideas — all with minimal typing.',
+    textAccent: 'text-fuchsia-300',
+    borderAccent: 'border-fuchsia-500/40',
+    bgAccent: 'bg-fuchsia-500/10',
+    glowColor: '#a21caf',
+    subFeatures: [
+      { label: 'Task step generator' },
+      { label: 'Journal writing polish' },
+      { label: 'Idea expansion' },
+      { label: 'Finance summaries' },
+    ],
   },
 ];
 
+// ─── Component ────────────────────────────────────────────────────────────────
 export default function KeyBenefits() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const [expandedId, setExpandedId] = useState<number | null>(null);
-  const [progress, setProgress] = useState(0);
+  const [expanded, setExpanded] = useState<number | null>(null);
 
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const progressRef = useRef<NodeJS.Timeout | null>(null);
-
-  const [sliderRef, instanceRef] = useKeenSlider({
-    loop: true,
-    slideChanged: (s) => {
-      const newSlide = s.track.details.rel;
-      setActiveIndex(newSlide * 4); // reset to first benefit of new slide
-      resetTimer();
-    },
-  });
-
-  useEffect(() => {
-    const checkScreen = () => setIsMobile(window.innerWidth < 768);
-    checkScreen();
-    window.addEventListener('resize', checkScreen);
-    return () => window.removeEventListener('resize', checkScreen);
-  }, []);
-
-  const getImagePath = (title: string) =>
-    `/static-images/key-benefits/edited/${title
-      .toLowerCase()
-      .replace(/\s+/g, '-')}.png`;
-
-  const handleBenefitClick = (id: number) => {
-    setActiveIndex(id - 1);
-    if (isMobile) setExpandedId((prev) => (prev === id ? null : id));
-    resetTimer();
-  };
-
-  // ---- Auto Play Logic ----
-  useEffect(() => {
-    startTimer();
-    return () => stopTimer();
-  }, [activeIndex]);
-
-  const startTimer = () => {
-    stopTimer();
-    setProgress(0);
-    let p = 0;
-
-    progressRef.current = setInterval(() => {
-      p += 2; // progress grows 0 → 100
-      setProgress(p);
-    }, 100);
-
-    intervalRef.current = setTimeout(() => {
-      const nextIndex = (activeIndex + 1) % benefits.length;
-      setActiveIndex(nextIndex);
-
-      // change slide when crossing every 4th benefit
-      if ((nextIndex + 1) % 4 === 1) instanceRef.current?.next();
-    }, 5000);
-  };
-
-  const stopTimer = () => {
-    if (intervalRef.current) clearTimeout(intervalRef.current);
-    if (progressRef.current) clearInterval(progressRef.current);
-  };
-
-  const resetTimer = () => {
-    stopTimer();
-    startTimer();
-  };
+  const toggle = (id: number) =>
+    setExpanded((prev) => (prev === id ? null : id));
 
   return (
     <section
-      className="py-24 bg-gradient-to-b from-white via-emerald-50/40 to-white dark:from-gray-950 dark:via-emerald-950/30 dark:to-gray-950 relative"
-      id="preview"
+      id="features"
+      className="relative py-28 bg-[#040d1a] overflow-hidden"
     >
-      <div className="absolute inset-x-0 top-10 h-32 mx-auto max-w-4xl bg-emerald-300/20 blur-3xl rounded-full opacity-40" />
-      <div className="relative max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16 space-y-4">
-          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.4em] text-emerald-600 dark:text-emerald-300">
-            orchestration board
+      {/* Background glows */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_15%_60%,#0f766e14,transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_85%_20%,#6366f114,transparent)]" />
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            'linear-gradient(#94a3b8 1px,transparent 1px),linear-gradient(90deg,#94a3b8 1px,transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
+      <div className="relative max-w-6xl mx-auto px-6 md:px-10">
+        {/* ── Section header ── */}
+        <div className="text-center mb-16">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-400/10 border border-teal-400/25 text-teal-300 text-xs font-semibold tracking-widest uppercase mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+            What&#39;s Inside
           </span>
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
-            Key Benefits that keep everything in motion
+          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-5">
+            9 tools. Zero friction.{' '}
+            <span className="bg-gradient-to-r from-teal-300 to-emerald-300 bg-clip-text text-transparent">
+              All connected.
+            </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Every module feeds the homepage, so you always see ongoing and 
-            overdue tasks, upcoming income and expenses, streaks, schedules, monthly
-            shopping plans and more at homepage.
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+            Every module feeds the homepage so you always see your ongoing
+            tasks, upcoming schedules, streaks, finances and more — in one
+            glance.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10 items-stretch">
-          {/* Left Column */}
-          <div className="lg:w-1/2 w-full relative bg-white dark:bg-gray-900 border border-emerald-100 dark:border-emerald-900/40 rounded-3xl shadow-xl px-2 py-6 overflow-hidden">
-            <div className="flex items-center justify-between px-6 pb-4 border-b border-gray-100 dark:border-gray-800">
-              <div>
-                <p className="text-sm uppercase tracking-[0.4em] text-emerald-500">
-                  auto-play
-                </p>
-                <p className="text-lg font-semibold text-gray-900 dark:text-gray-50">
-                  {benefits[activeIndex].title}
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    instanceRef.current?.prev();
-                    resetTimer();
-                  }}
-                  className="p-3 rounded-2xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 transition"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => {
-                    instanceRef.current?.next();
-                    resetTimer();
-                  }}
-                  className="p-3 rounded-2xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 transition"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            <div ref={sliderRef} className="keen-slider px-4">
-              {[0, 1].map((slideIndex) => (
-                <div
-                  key={slideIndex}
-                  className="keen-slider__slide space-y-4 py-6"
-                >
-                  {benefits
-                    .slice(slideIndex * 4, slideIndex * 4 + 4)
-                    .map((b) => {
-                      const isActive = b.id === activeIndex + 1;
-                      return (
-                        <div key={b.id} className="w-full relative">
-                          <div
-                            onClick={() => handleBenefitClick(b.id)}
-                            className={`relative flex flex-col md:flex-row gap-4 cursor-pointer rounded-2xl border px-5 py-5 transition-all ${
-                              isActive
-                                ? 'bg-emerald-50 dark:bg-emerald-900/30 border-emerald-200 dark:border-emerald-700 shadow-lg'
-                                : 'border-gray-200 dark:border-gray-800'
-                            }`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <div
-                                className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                                  isActive
-                                    ? 'bg-emerald-500 text-white'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200'
-                                }`}
-                              >
-                                {b.id}
-                              </div>
-                              <h3
-                                className={`font-semibold text-lg ${
-                                  isActive
-                                    ? 'text-emerald-600 dark:text-emerald-300'
-                                    : 'text-gray-800 dark:text-gray-200'
-                                }`}
-                              >
-                                {b.title}
-                              </h3>
-                            </div>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                              {b.description}
-                            </p>
-
-                            {/* Animated Progress */}
-                            <div className="absolute inset-y-0 left-0 w-[6px] rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-                              {isActive && (
-                                <div
-                                  className="absolute left-0 bottom-0 w-full bg-emerald-500 transition-all duration-100 ease-linear"
-                                  style={{ height: `${progress}%` }}
-                                />
-                              )}
-                            </div>
-                          </div>
-
-                          {isMobile && expandedId === b.id && (
-                            <div className="flex justify-center py-3">
-                              <Image
-                                src={getImagePath(b.title)}
-                                alt={`${b.title} preview`}
-                                width={420}
-                                height={260}
-                                className="rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg object-contain"
-                              />
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                </div>
-              ))}
+        {/* ── Notification callouts ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14 max-w-2xl mx-auto">
+          <div className="flex items-start gap-3 bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-4">
+            <span className="text-2xl flex-shrink-0 mt-0.5">💬</span>
+            <div>
+              <p className="text-sm font-semibold text-white mb-1">
+                WhatsApp Reminders
+              </p>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Tasks and schedules message you on WhatsApp at exactly the right
+                time via <span className="text-slate-300">whatsapp-web.js</span>
+                .
+              </p>
             </div>
           </div>
-
-          {/* Right Column — Desktop Preview */}
-          <div className="lg:w-1/2 w-full relative">
-            <div className="hidden md:flex items-center justify-center bg-slate-900 rounded-[32px] min-h-[480px] border border-slate-800 relative overflow-hidden shadow-[0_30px_80px_-30px_rgba(15,23,42,0.8)]">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/30 via-transparent to-cyan-500/30" />
-              {benefits.map((b, index) => (
-                <div
-                  key={b.id}
-                  className={`absolute inset-6 flex items-center justify-center rounded-[24px] bg-white/95 dark:bg-gray-950 transition-opacity duration-700 ${
-                    index === activeIndex ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
-                  <Image
-                    src={getImagePath(b.title)}
-                    alt={`${b.title} feature preview`}
-                    width={520}
-                    height={420}
-                    className="rounded-2xl object-contain"
-                  />
-                </div>
-              ))}
+          <div className="flex items-start gap-3 bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-4">
+            <span className="text-2xl flex-shrink-0 mt-0.5">🔔</span>
+            <div>
+              <p className="text-sm font-semibold text-white mb-1">
+                Push Notifications
+              </p>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Firebase Cloud Messaging sends browser push notifications for
+                all task and schedule reminders.
+              </p>
             </div>
+          </div>
+        </div>
 
-            <div className="md:hidden rounded-3xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-6 shadow-xl">
-              <Image
-                src={getImagePath(benefits[activeIndex].title)}
-                alt={`${benefits[activeIndex].title} preview`}
-                width={520}
-                height={420}
-                className="rounded-2xl object-contain"
+        {/* ── Feature grid ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {benefits.map((b) => {
+            const isOpen = expanded === b.id;
+            return (
+              <div
+                key={b.id}
+                onClick={() => toggle(b.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && toggle(b.id)}
+                aria-expanded={isOpen}
+                className={`
+                  relative group cursor-pointer rounded-2xl border transition-all duration-300
+                  ${
+                    isOpen
+                      ? `${b.bgAccent} ${b.borderAccent}`
+                      : 'bg-white/[0.03] border-white/10 hover:bg-white/[0.06] hover:border-white/20'
+                  }
+                `}
+                style={
+                  isOpen
+                    ? { boxShadow: `0 8px 40px -8px ${b.glowColor}55` }
+                    : {}
+                }
+              >
+                {/* Top shimmer line (shows on hover + when open) */}
+                <div
+                  className={`absolute top-0 left-8 right-8 h-px transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'}`}
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${b.glowColor}cc, transparent)`,
+                  }}
+                />
+
+                <div className="p-5">
+                  {/* Header row */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ${
+                          isOpen
+                            ? 'bg-white/15 scale-110'
+                            : 'bg-white/5 group-hover:bg-white/10'
+                        }`}
+                      >
+                        {b.icon}
+                      </span>
+                      <h3
+                        className={`font-bold text-sm transition-colors duration-200 ${
+                          isOpen
+                            ? b.textAccent
+                            : 'text-slate-200 group-hover:text-white'
+                        }`}
+                      >
+                        {b.title}
+                      </h3>
+                    </div>
+                    <span
+                      className={`text-slate-500 text-xs transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    >
+                      ▾
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {b.description}
+                  </p>
+
+                  {/* Sub-features accordion */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isOpen ? 'max-h-64 mt-4 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className={`border-t mb-3 ${b.borderAccent}`} />
+                    <div className="flex flex-wrap gap-1.5">
+                      {b.subFeatures?.map((sf) => (
+                        <span
+                          key={sf.label}
+                          className={`inline-flex items-center gap-1 text-[10px] px-2.5 py-1 rounded-full border ${b.borderAccent} ${b.textAccent} bg-white/5 font-medium`}
+                        >
+                          <span className="opacity-50">✦</span> {sf.label}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ── Bottom CTA ── */}
+        <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-5 text-center">
+          <p className="text-slate-400 text-sm">
+            All 9 tools. One workspace. Your data, your hosting.
+          </p>
+          <a
+            href="#pricing"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-2xl bg-gradient-to-r from-teal-400 to-emerald-400 text-slate-900 font-bold text-sm shadow-xl shadow-teal-500/25 hover:scale-[1.02] transition"
+          >
+            Launch my workspace
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
               />
-            </div>
-          </div>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

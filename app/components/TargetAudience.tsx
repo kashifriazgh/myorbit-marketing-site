@@ -27,17 +27,16 @@ const audiences: Audience[] = [
   },
   {
     id: 3,
-    title: 'Job Seekers & Professionals',
+    title: 'People Who Aim Higher Than To-Do Lists',
     description:
-      'Be disciplined by planning your tasks and building productive habits to achieve your career goals and professional growth.',
+      "For people who don't just create to-do lists, but actually want to achieve measurable goals and make real progress in their careers and life.",
     icon: <Target className="w-8 h-8 text-orange-600" />,
-  }
-,  
+  },
   {
     id: 4,
     title: 'Personal Growth Enthusiasts',
     description:
-      'Build habits, track progress, and stay motivated to achieve a more productive lifestyle.',
+      'eople who are serious about improving their life systematically to achieve a more productive lifestyle.',
     icon: <Users className="w-8 h-8 text-purple-600" />,
   },
 ];
@@ -63,11 +62,13 @@ export default function TargetAudience() {
             ideal users
           </span>
           <h2 className="text-4xl font-bold mt-6">
-          Built for people who love to plan, achieve, and celebrate every day</h2>
+            Built for people who love to plan, achieve, and celebrate every day
+          </h2>
           <p className="text-slate-200 text-lg max-w-3xl mx-auto mt-4">
-  Whether you’re a student, a freelancer, or someone who loves personal growth, every tool adapts to how you plan, track, and achieve.
-</p>
-
+            Whether you’re a student, a freelancer, or someone who loves
+            personal growth, every tool adapts to how you plan, track, and
+            achieve.
+          </p>
         </div>
 
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">

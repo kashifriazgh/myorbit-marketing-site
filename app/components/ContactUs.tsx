@@ -76,7 +76,7 @@ const ContactUs = () => {
         read: false,
         done: false,
       });
-      
+
       // Send push notification
       try {
         await fetch('/api/send-notification', {
@@ -92,7 +92,7 @@ const ContactUs = () => {
         console.error('Failed to send notification:', notifError);
         // Don't fail the form submission if notification fails
       }
-      
+
       setMessageFeedback({
         type: 'success',
         text: 'Thanks! Your message has been sent.',
@@ -127,7 +127,7 @@ const ContactUs = () => {
         read: false,
         done: false,
       });
-      
+
       // Send push notification
       try {
         await fetch('/api/send-notification', {
@@ -143,7 +143,7 @@ const ContactUs = () => {
         console.error('Failed to send notification:', notifError);
         // Don't fail the form submission if notification fails
       }
-      
+
       setCallFeedback({
         type: 'success',
         text: 'Thanks! We will reach out shortly.',
@@ -264,7 +264,8 @@ const ContactUs = () => {
             <Phone className="w-10 h-10 text-teal-300" />
             <h3 className="text-xl font-semibold">Request a call back</h3>
             <p className="text-sm text-slate-200">
-              Share your contact details and any specific requirements. We will call or WhatsApp you shortly.
+              Share your contact details and any specific requirements. We will
+              call or WhatsApp you shortly.
             </p>
             <textarea
               placeholder="Your contact number, email, or any additional information..."
@@ -280,7 +281,7 @@ const ContactUs = () => {
               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-teal-400 to-cyan-400 text-slate-900 py-3 rounded-2xl font-semibold hover:opacity-90 disabled:opacity-50 transition"
             >
               <Phone className="w-5 h-5" />
-              {callLoading ? 'Submitting...' : 'Request call'}
+              {callLoading ? 'Submitting...' : 'Request call or Whatsapp'}
             </button>
             {callFeedback && (
               <div

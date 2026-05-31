@@ -19,12 +19,12 @@
   margin-bottom: 20px;
 }
 .title {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
 }
 .subtle {
   color: #475569;
-  font-size: 13px;
+  font-size: 16.25px;
 }
 .panel {
   background: #ffffff;
@@ -46,7 +46,7 @@
   border-radius: 8px;
   border: 1px solid #d1e3f0;
   background: #fbfdff;
-  font-size: 14px;
+  font-size: 17.5px;
   color: #0f172a;
 }
 .textarea {
@@ -100,7 +100,7 @@
 }
 .meta {
   color: #475569;
-  font-size: 13px;
+  font-size: 16.25px;
 }
 .viewLink {
   text-decoration: none;
@@ -118,7 +118,7 @@
   margin-top: 14px;
 }
 .small {
-  font-size: 13px;
+  font-size: 16.25px;
   color: #475569;
 }
 .fieldRow {

@@ -1,14 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  updateDoc,
-  runTransaction,
-} from 'firebase/firestore';
+import { doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import {
   Loader2,
   X,
@@ -52,6 +45,7 @@ interface ChecklistItem {
 export interface ClientData {
   id?: string;
   clientCode?: string;
+  clientId?: string;
   // Client Info
   fullName: string;
   email: string;
@@ -143,7 +137,7 @@ export const DEFAULT_CHECKLIST: ChecklistItem[] = [
   { id: 'c14', label: 'Client Handover Completed', done: false },
 ];
 
-const EMPTY_CLIENT: ClientData = {
+export const EMPTY_CLIENT: ClientData = {
   fullName: '',
   email: '',
   mobile: '',
@@ -186,6 +180,7 @@ const EMPTY_CLIENT: ClientData = {
   netlifyRepoUrl: '',
   netlifyBranch: 'main',
   clientCode: '',
+  clientId: '',
   subscription: 'free',
   joiningDate: '',
   expiryDate: '',
@@ -215,10 +210,9 @@ export function calcOverallProgress(client: ClientData): number {
 // ─────────────────────────────────────────────
 
 const inputCls =
-  'w-full rounded-2xl border border-slate-600 bg-slate-900 text-slate-100 px-4 py-3 text-sm placeholder:text-slate-500 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition shadow-sm shadow-slate-950/20';
+  'w-full rounded-2xl border border-slate-600 bg-slate-900 text-slate-100 px-4 py-3 text-lg placeholder:text-slate-500 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition shadow-sm shadow-slate-950/20';
 
-const labelCls = 'block text-sm font-semibold text-slate-200 mb-2';
-
+const labelCls = 'block text-lg font-semibold text-slate-200 mb-2';
 function Field({
   label,
   children,
@@ -247,7 +241,7 @@ function Toggle({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition ${
+      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-base font-medium border transition ${
         checked
           ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300'
           : 'bg-slate-800 border-white/10 text-slate-400'
@@ -272,7 +266,7 @@ function StatusCheckbox({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 border transition ${
+      className={`flex items-center gap-2 text-base rounded-lg px-3 py-2 border transition ${
         checked
           ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
           : 'bg-slate-800/50 border-white/10 text-slate-400 hover:border-white/20'
@@ -329,17 +323,17 @@ function SectionCard({
       {!isActive && !isCompleted && (
         <div className="absolute inset-0 z-10 rounded-2xl bg-slate-950/95 backdrop-blur-sm flex flex-col items-center justify-center px-6 py-8 text-center">
           <AlertCircle className="w-9 h-9 text-slate-400 mb-3" />
-          <p className="text-sm font-semibold text-slate-200">
+          <p className="text-lg font-semibold text-slate-200">
             Section locked until enabled.
           </p>
-          <p className="text-sm text-slate-400 mt-2 max-w-xs">
+          <p className="text-lg text-slate-400 mt-2 max-w-xs">
             Click the button below to unlock editing for this section.
           </p>
           {onEnableEditing && (
             <button
               type="button"
               onClick={onEnableEditing}
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-5 py-2.5 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400"
             >
               <CheckCircle2 className="w-4 h-4" />
               Enable Editing
@@ -371,12 +365,12 @@ function SectionCard({
             {icon}
           </div>
           <div>
-            <h3 className="font-semibold text-slate-100 text-sm">{title}</h3>
-            <p className="text-sm text-slate-400 mt-0.5">{subtitle}</p>
+            <h3 className="font-semibold text-slate-100 text-base">{title}</h3>
+            <p className="text-base text-slate-400 mt-0.5">{subtitle}</p>
           </div>
         </div>
         {isCompleted && (
-          <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-3 py-1 rounded-full">
+          <div className="flex items-center gap-1.5 text-emerald-400 text-base font-medium bg-emerald-500/10 px-3 py-1 rounded-full">
             <CheckCircle2 className="w-3.5 h-3.5" />
             Completed
           </div>
@@ -395,7 +389,7 @@ function SectionCard({
             <button
               onClick={onMarkComplete}
               disabled={saving}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white text-base font-semibold hover:opacity-90 disabled:opacity-50 transition"
             >
               {saving ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -454,8 +448,8 @@ export function SummaryModal({
       >
         <div className="flex items-start justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-xl font-semibold text-white">Client Summary</h2>
-            <p className="text-sm text-slate-400 mt-1">
+            <h2 className="text-2xl font-semibold text-white">Client Summary</h2>
+            <p className="text-base text-slate-400 mt-1">
               Quick overview of the selected client data.
             </p>
           </div>
@@ -484,8 +478,8 @@ export function SummaryModal({
               key={item.label}
               className="rounded-2xl border border-white/10 bg-slate-900/80 p-4"
             >
-              <div className="text-xs text-slate-500 mb-2">{item.label}</div>
-              <div className="text-sm text-slate-100 break-all">
+              <div className="text-base text-slate-500 mb-2">{item.label}</div>
+              <div className="text-base text-slate-100 break-all">
                 {item.value || 'Not set'}
               </div>
             </div>
@@ -493,7 +487,7 @@ export function SummaryModal({
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-slate-900/80 p-4">
-          <div className="text-sm text-slate-400 mb-4">Status</div>
+          <div className="text-base text-slate-400 mb-4">Status</div>
           <div className="grid gap-3">
             {statusRows.map((item) => (
               <div
@@ -528,6 +522,7 @@ interface CreateClientPageProps {
   docId?: string;
   onBack: () => void;
   onSaved: () => void;
+  onDelete?: () => void;
 }
 
 export function CreateClientPage({
@@ -535,6 +530,7 @@ export function CreateClientPage({
   docId,
   onBack,
   onSaved,
+  onDelete,
 }: CreateClientPageProps) {
   const [form, setForm] = useState<ClientData>(initial ?? EMPTY_CLIENT);
   const [saving, setSaving] = useState(false);
@@ -554,7 +550,7 @@ export function CreateClientPage({
   >(null);
 
   const envVarsText = useMemo(() => {
-    const clientIdString = form.clientCode ?? '';
+    const clientIdString = form.clientId ?? form.clientCode ?? '';
     return [
       `NEXT_PUBLIC_FIREBASE_API_KEY=${form.firebaseApiKey}`,
       `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${form.firebaseAuthDomain}`,
@@ -645,34 +641,9 @@ export function CreateClientPage({
           updatedAt: serverTimestamp(),
         });
       } else {
-        // Allocate a sequential client number from settings/global.userCount
-        const nextNumber = await runTransaction(db, async (tx) => {
-          const settingsRef = doc(db, 'settings', 'global');
-          const snap = await tx.get(settingsRef);
-          const sdata =
-            (snap.exists()
-              ? (snap.data() as { userCount?: number })
-              : undefined) || undefined;
-          const current =
-            sdata && typeof sdata.userCount === 'number'
-              ? sdata.userCount
-              : 10000;
-          const next = current + 1;
-          tx.set(settingsRef, { userCount: next }, { merge: true });
-          return next;
-        });
-
-        const clientCode = `clt-${nextNumber}`;
-
-        const ref = await addDoc(collection(db, 'clients'), {
-          ...updated,
-          clientCode,
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
-        });
-
-        setClientId(ref.id);
-        setForm((prev) => ({ ...prev, clientCode }));
+        console.error(
+          'saveToFirebase called without a valid clientId. Client creation must be done via the dashboard modal.',
+        );
       }
     } catch (e) {
       console.error('Failed to save client field:', e);
@@ -748,13 +719,13 @@ export function CreateClientPage({
   const remaining = form.monthlyFee - form.discount - form.amountPaid;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-slate-950 text-white text-lg">
       {/* Top Bar */}
       <div className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur border-b border-white/5 px-6 py-3 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition"
+            className="flex items-center gap-2 text-base text-slate-400 hover:text-white transition"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Clients
@@ -769,7 +740,7 @@ export function CreateClientPage({
                   setCopiedEnv(true);
                   window.setTimeout(() => setCopiedEnv(false), 2000);
                 }}
-                className="inline-flex items-center gap-2 rounded-full bg-cyan-500/15 px-4 py-2 text-xs font-semibold text-cyan-200 border border-cyan-500/20 hover:bg-cyan-500/20 transition"
+                className="inline-flex items-center gap-2 rounded-full bg-cyan-500/15 px-4 py-2 text-base font-semibold text-cyan-200 border border-cyan-500/20 hover:bg-cyan-500/20 transition"
               >
                 Generate env vars
               </button>
@@ -777,13 +748,22 @@ export function CreateClientPage({
                 <button
                   type="button"
                   onClick={() => setShowEnvPreview(false)}
-                  className="inline-flex items-center gap-2 rounded-full bg-slate-800/80 px-4 py-2 text-xs font-semibold text-slate-300 border border-white/10 hover:bg-slate-800 transition"
+                  className="inline-flex items-center gap-2 rounded-full bg-slate-800/80 px-4 py-2 text-base font-semibold text-slate-300 border border-white/10 hover:bg-slate-800 transition"
                 >
                   Hide env vars
                 </button>
               )}
+              {clientId && onDelete && (
+                <button
+                  type="button"
+                  onClick={onDelete}
+                  className="inline-flex items-center gap-2 rounded-full bg-red-500/15 px-4 py-2 text-base font-semibold text-red-200 border border-red-500/20 hover:bg-red-500/25 transition"
+                >
+                  Delete client
+                </button>
+              )}
               {copiedEnv && (
-                <span className="text-xs text-emerald-300">
+                <span className="text-base text-emerald-300">
                   Copied env.local text
                 </span>
               )}
@@ -792,7 +772,7 @@ export function CreateClientPage({
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-xs text-slate-500">{progress}% complete</span>
+          <span className="text-base text-slate-500">{progress}% complete</span>
           <div className="w-40 h-2 rounded-full bg-slate-800 overflow-hidden">
             <div
               className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 transition-all duration-700"
@@ -802,9 +782,9 @@ export function CreateClientPage({
         </div>
       </div>
       {clientId && showEnvPreview && (
-        <div className="mt-3 rounded-2xl border border-cyan-500/20 bg-slate-900/80 p-4 text-sm text-slate-200">
+        <div className="mt-3 rounded-2xl border border-cyan-500/20 bg-slate-900/80 p-4 text-base text-slate-200">
           <div className="mb-2 text-slate-400">env.local preview</div>
-          <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded-xl bg-slate-950/80 p-4 text-xs leading-6">
+          <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded-xl bg-slate-950/80 p-4 text-base leading-6">
             {envVarsText}
           </pre>
         </div>
@@ -815,7 +795,7 @@ export function CreateClientPage({
           {/* Sidebar - desktop */}
           <aside className="hidden md:block w-1/4">
             <div className="sticky top-20 space-y-4">
-              <h4 className="text-sm text-slate-400 mb-2">Setup Steps</h4>
+              <h4 className="text-base text-slate-400 mb-2">Setup Steps</h4>
               <div className="space-y-2">
                 {[
                   ['clientInfo', "Client's Basic Info"],
@@ -844,8 +824,7 @@ export function CreateClientPage({
                     );
                   } else if (key === 'push') {
                     done = !!form.checklist.find(
-                      (c) =>
-                        c.label === 'Push Notifications Tested' && c.done,
+                      (c) => c.label === 'Push Notifications Tested' && c.done,
                     );
                   } else {
                     done = form.completedSections.includes(key as SectionKey);
@@ -861,7 +840,7 @@ export function CreateClientPage({
                       ) : (
                         <div className="w-2.5 h-2.5 rounded-full bg-slate-600" />
                       )}
-                      <div className="text-sm text-slate-100">{label}</div>
+                      <div className="text-base text-slate-100">{label}</div>
                     </div>
                   );
                 })}
@@ -876,7 +855,7 @@ export function CreateClientPage({
               <div className="md:hidden fixed inset-0 z-50 bg-black/40">
                 <div className="absolute left-0 top-0 h-full w-3/4 bg-slate-950 p-4 overflow-auto">
                   <div className="flex justify-between items-center mb-4">
-                    <h4 className="text-sm text-slate-400">Setup Steps</h4>
+                    <h4 className="text-base text-slate-400">Setup Steps</h4>
                     <button
                       onClick={() => setSidebarOpen(false)}
                       className="text-slate-400"
@@ -929,7 +908,7 @@ export function CreateClientPage({
                           ) : (
                             <div className="w-2.5 h-2.5 rounded-full bg-slate-600" />
                           )}
-                          <div className="text-sm text-slate-100">{label}</div>
+                          <div className="text-base text-slate-100">{label}</div>
                         </div>
                       );
                     })}
@@ -939,10 +918,10 @@ export function CreateClientPage({
             )}
             {/* Page Title */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold">
+              <h1 className="text-4xl font-bold">
                 {docId ? form.fullName || 'Edit Client' : 'New Client Setup'}
               </h1>
-              <p className="text-slate-400 mt-1 text-sm">
+              <p className="text-slate-400 mt-1 text-lg">
                 Follow each section in order to configure and deploy the
                 client&#39;s app
               </p>
@@ -961,6 +940,15 @@ export function CreateClientPage({
               saving={saving}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Field label="Client ID">
+                  <input
+                    className={inputCls}
+                    placeholder="clt-10001"
+                    value={form.clientId ?? form.clientCode ?? ''}
+                    readOnly
+                    disabled
+                  />
+                </Field>
                 <Field label="Full Name *">
                   <input
                     className={inputCls}
@@ -1002,7 +990,7 @@ export function CreateClientPage({
                   <button
                     type="button"
                     onClick={() => setShowClientAdvanced((s) => !s)}
-                    className="text-xs text-slate-400 px-3 py-1 rounded-lg border hover:border-white/10"
+                    className="text-base text-slate-400 px-3 py-1 rounded-lg border hover:border-white/10"
                   >
                     {showClientAdvanced ? 'Hide details' : 'Show more'}
                   </button>
@@ -1050,7 +1038,7 @@ export function CreateClientPage({
                         <button
                           type="button"
                           onClick={() => setShowAiNotes((s) => !s)}
-                          className="text-xs text-slate-400 px-3 py-1 rounded-lg border hover:border-white/10"
+                          className="text-base text-slate-400 px-3 py-1 rounded-lg border hover:border-white/10"
                         >
                           {showAiNotes ? 'Hide AI notes' : 'Show AI notes'}
                         </button>
@@ -1095,10 +1083,10 @@ export function CreateClientPage({
                 <div className="sm:col-span-2 rounded-2xl border border-white/10 bg-slate-900/80 p-4">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <div className="text-sm font-semibold text-slate-100">
+                      <div className="text-base font-semibold text-slate-100">
                         Paste firebaseConfig
                       </div>
-                      <div className="text-xs text-slate-500">
+                      <div className="text-base text-slate-500">
                         Paste the raw Firebase config object and press parse.
                       </div>
                     </div>
@@ -1108,7 +1096,7 @@ export function CreateClientPage({
                         setShowFirebaseConfigParser((prev) => !prev);
                         setFirebaseConfigStatus(null);
                       }}
-                      className="rounded-full bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-200 border border-white/10 hover:bg-slate-700 transition"
+                      className="rounded-full bg-slate-800 px-4 py-2 text-base font-semibold text-slate-200 border border-white/10 hover:bg-slate-700 transition"
                     >
                       {showFirebaseConfigParser
                         ? 'Hide parser'
@@ -1121,17 +1109,17 @@ export function CreateClientPage({
                         value={firebaseConfigRaw}
                         onChange={(e) => setFirebaseConfigRaw(e.target.value)}
                         placeholder="const firebaseConfig = { apiKey: '...', authDomain: '...', projectId: '...', storageBucket: '...', messagingSenderId: '...', appId: '...', measurementId: '...' };"
-                        className="min-h-[140px] w-full rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-cyan-500/30 focus:ring-2 focus:ring-cyan-500/20 transition"
+                        className="min-h-[140px] w-full rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 text-base text-slate-100 placeholder:text-slate-500 outline-none focus:border-cyan-500/30 focus:ring-2 focus:ring-cyan-500/20 transition"
                       />
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <button
                           type="button"
                           onClick={() => parseFirebaseConfig(firebaseConfigRaw)}
-                          className="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-2 text-xs font-semibold text-slate-950 hover:bg-cyan-400 transition"
+                          className="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-2 text-base font-semibold text-slate-950 hover:bg-cyan-400 transition"
                         >
                           Parse config
                         </button>
-                        <div className="text-xs text-slate-400">
+                        <div className="text-base text-slate-400">
                           {firebaseConfigStatus ??
                             'Enter raw firebaseConfig and parse values automatically.'}
                         </div>
@@ -1274,7 +1262,7 @@ export function CreateClientPage({
                   <label className={labelCls}>Service Account JSON</label>
                   <label className="flex flex-col items-center justify-center gap-2 w-full border border-dashed border-white/10 rounded-xl py-6 cursor-pointer hover:border-cyan-500/40 transition bg-slate-800/30">
                     <Upload className="w-5 h-5 text-slate-500" />
-                    <span className="text-xs text-slate-500">
+                    <span className="text-base text-slate-500">
                       {form.firebaseServiceAccountJson
                         ? '✓ JSON loaded'
                         : 'Click to upload service-account.json'}
@@ -1426,7 +1414,7 @@ export function CreateClientPage({
                   <button
                     type="button"
                     onClick={() => setShowAiNotes((s) => !s)}
-                    className="text-xs text-slate-400 px-3 py-1 rounded-lg border hover:border-white/10"
+                    className="text-base text-slate-400 px-3 py-1 rounded-lg border hover:border-white/10"
                   >
                     {showAiNotes ? 'Hide AI notes' : 'Show AI notes'}
                   </button>
@@ -1684,7 +1672,7 @@ export function CreateClientPage({
             >
               {/* Mini progress */}
               <div className="mb-4">
-                <div className="flex items-center justify-between text-xs text-slate-500 mb-1.5">
+                <div className="flex items-center justify-between text-base text-slate-500 mb-1.5">
                   <span>Checklist Progress</span>
                   <span>
                     {form.checklist.filter((i) => i.done).length} /{' '}
@@ -1716,7 +1704,7 @@ export function CreateClientPage({
                       );
                       saveToFirebase({ checklist: updated });
                     }}
-                    className={`flex items-center gap-2.5 text-sm rounded-xl px-3 py-2.5 border text-left transition ${
+                    className={`flex items-center gap-2.5 text-base rounded-xl px-3 py-2.5 border text-left transition ${
                       item.done
                         ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
                         : 'bg-slate-800/40 border-white/5 text-slate-400 hover:border-white/15'

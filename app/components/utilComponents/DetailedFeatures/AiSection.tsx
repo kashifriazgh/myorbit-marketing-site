@@ -18,7 +18,7 @@ export default function AISection() {
         setCurrentSlide(slider.track.details.rel);
       },
     },
-    []
+    [],
   );
 
   // 🔄 Centralized AutoPlay Hook — fully synced
@@ -73,20 +73,20 @@ export default function AISection() {
       bg: 'from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/40',
     },
     {
-      title: 'AI-Powered Content & Task Generation',
-      desc: 'AI understands what you mean — just type things like @tasks or @goals to instantly create them, or use the built-in AI buttons in each form to get automatic steps or summaries',
+      title: 'Turn Ideas into Structured Plans',
+      desc: 'Write naturally, and AI handles the details. Whether you are creating goals, tasks, schedules, or financial records, AI can extract deadlines, values, units, and other key information, improve unclear entries, and flag inconsistencies to help keep your plans accurate and actionable.',
       icon: '⚙️',
       bg: 'from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/40',
     },
     {
-      title: 'AI-Powered Writing',
-      desc: 'Refine your journaling, ideas, and notes with better grammar, clarity, and expressive emojis ✨.',
+      title: 'AI-Powered Writing & Content Enhancement',
+      desc: 'Improve journals, notes, goals, and other content with a single click. AI can correct grammar, enhance clarity, refine wording, improve structure, add appropriate emojis, and transform rough drafts into polished, professional, and easy-to-read content.',
       icon: '✍️',
       bg: 'from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/40',
     },
     {
-      title: 'Intent Understanding',
-      desc: 'AI interprets your natural text — e.g. "@addTask: Get laptop repaired tomorrow" → auto task with due date.',
+      title: 'Smart Breakdown of Tasks & Goals',
+      desc: 'Automatically break down your tasks into actionable steps and your goals into meaningful milestones. AI helps transform large, complex work into smaller, manageable parts so you can plan and execute with clarity.',
       icon: '🤖',
       bg: 'from-yellow-50 to-yellow-100 dark:from-yellow-900/30 dark:to-yellow-800/40',
     },
@@ -97,8 +97,8 @@ export default function AISection() {
       bg: 'from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/40',
     },
     {
-      title: 'Smart Prioritization',
-      desc: 'Get intelligent recommendations on what to do first or which tasks matter most.',
+      title: 'AI-Powered Background Automation',
+      desc: 'For premium users, AI works behind the scenes using cloud functions to understand natural language actions and execute them safely. For example, when a user replies to a WhatsApp reminder, AI interprets the message, converts it into structured commands, and updates the database automatically — such as marking tasks complete, updating records, or triggering the next action.',
       icon: '🎯',
       bg: 'from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/40',
     },
