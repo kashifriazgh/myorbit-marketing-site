@@ -21,10 +21,15 @@ export default function Footer() {
           <Link href="/about" className="hover:text-white transition">
             About
           </Link>
+          <Link href="/roadmap" className="hover:text-white transition">
+            Roadmap
+          </Link>
+          <Link href="/terms" className="hover:text-white transition">
+            Terms
+          </Link>
           <Link href="/privacy" className="hover:text-white transition">
             Privacy
           </Link>
-         
         </nav>
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />

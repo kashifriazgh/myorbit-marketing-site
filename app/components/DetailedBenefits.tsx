@@ -7,7 +7,6 @@ import MonthlyShoppingPlanSection from './utilComponents/DetailedFeatures/Monthl
 import StreaksSection from './utilComponents/DetailedFeatures/StreaksSection';
 import AISection from './utilComponents/DetailedFeatures/AiSection';
 import JournalingSection from './utilComponents/DetailedFeatures/JournalingSection';
-import { motion } from 'framer-motion';
 
 export default function DetailedBenefits() {
   return (

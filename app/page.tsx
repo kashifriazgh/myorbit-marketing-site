@@ -1,27 +1,32 @@
 import React from 'react';
 import Navigation from './components/NavigationBar';
 import HeroSection from './components/HeroSection';
-import KeyBenefits from './components/KeyBenefits';
 import TargetAudience from './components/TargetAudience';
 import Pricing from './components/Pricing';
 import DescriptiveParagraph from './components/DescriptiveParagraph';
 import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
-import SchedulePreview from './components/utilComponents/KeyBenefits/SchedulePreview';
 import DetailedBenefits from './components/DetailedBenefits';
 import Reviews from './components/Reviews';
-import CreateDocumentButton from './components/test';
+import FoundingMemberSection from './components/FoundingMember';
+import InteractiveDemos from './components/InteractiveDemos';
+import FounderStorySection from './components/FounderStory';
+
 export default function Homepage() {
   return (
     <div>
       <Navigation />
       <HeroSection />
+      <InteractiveDemos />
+      <FounderStorySection />
+      
       <DescriptiveParagraph />
-      <KeyBenefits />
+      {/* <KeyBenefits /> */}
       <DetailedBenefits />
       <TargetAudience />
       <Reviews />
       <Pricing />
+      <FoundingMemberSection />
       <ContactUs />
       <Footer />
 

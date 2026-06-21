@@ -59,15 +59,15 @@ export default function ClientDetailsPage() {
 
   if (loading || deleting) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <Loader2 className="w-10 h-10 animate-spin text-cyan-400" />
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center transition-colors duration-300">
+        <Loader2 className="w-10 h-10 animate-spin text-cyan-550 dark:text-cyan-400" />
       </div>
     );
   }
 
   if (!client) {
     return (
-      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white flex items-center justify-center transition-colors duration-300">
         Client not found
       </div>
     );

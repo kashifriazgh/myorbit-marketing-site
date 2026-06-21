@@ -10,7 +10,7 @@ export default function Pricing() {
       title: 'App Setup',
       badge: 'Introductory Offer',
       description:
-        'We set up your personal productivity workspace — connected to your own Firebase database, Gemini AI, and hosted on Netlify under your account. You own everything.',
+        'We set up your personal productivity workspace — connected to your own Firebase database, AI integrated, and hosted on Netlify under your account. You own everything.',
       originalPrice: '₨ 3,000',
       price: '₨ 500',
       note: 'Limited time · Limited users',
@@ -19,7 +19,7 @@ export default function Pricing() {
       features: [
         'Full app deployed on your domain',
         'Your own Firebase database',
-        'Gemini AI connected',
+        'AI integrated',
         'One-time payment — no recurring fee',
       ],
       cta: 'Get my workspace',

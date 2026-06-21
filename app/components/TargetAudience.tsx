@@ -36,7 +36,7 @@ const audiences: Audience[] = [
     id: 4,
     title: 'Personal Growth Enthusiasts',
     description:
-      'eople who are serious about improving their life systematically to achieve a more productive lifestyle.',
+      'People who are serious about improving their life systematically to achieve a more productive lifestyle.',
     icon: <Users className="w-8 h-8 text-purple-600" />,
   },
 ];
@@ -71,7 +71,7 @@ export default function TargetAudience() {
           </p>
         </div>
 
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="hidden pt-3 md:grid grid-cols-2 lg:grid-cols-4 gap-6">
           {audiences.map((a) => (
             <div
               key={a.id}

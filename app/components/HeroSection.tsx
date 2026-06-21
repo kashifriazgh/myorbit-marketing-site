@@ -1,11 +1,6 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
-import { useKeenSlider } from 'keen-slider/react';
-import 'keen-slider/keen-slider.min.css';
-
-const animation = { duration: 18000, easing: (t: number) => t };
 
 // ── Animated counter ─────────────────────────────────────────────────────────
 function AnimatedNumber({
@@ -47,32 +42,6 @@ function AnimatedNumber({
   );
 }
 
-// ── Floating pill ─────────────────────────────────────────────────────────────
-function FloatingPill({
-  icon,
-  label,
-  sub,
-  style,
-}: {
-  icon: string;
-  label: string;
-  sub: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div
-      className="absolute flex items-center gap-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-3.5 py-2.5 shadow-2xl text-white z-20"
-      style={style}
-    >
-      <span className="text-lg">{icon}</span>
-      <div>
-        <p className="text-xs font-semibold leading-tight">{label}</p>
-        <p className="text-[10px] text-slate-300 leading-tight">{sub}</p>
-      </div>
-    </div>
-  );
-}
-
 // ── Feature chip ──────────────────────────────────────────────────────────────
 const features = [
   { label: 'Tasks', icon: '✅' },
@@ -93,70 +62,8 @@ const stats = [
   { value: 100, suffix: '%', label: 'your data, your DB' },
 ];
 
-// ── Feature images ────────────────────────────────────────────────────────────
-const featureImages = [
-  {
-    id: 1,
-    src: '/static-images/tasks-view.png',
-    alt: 'Tasks View',
-    label: 'Tasks',
-  },
-  {
-    id: 2,
-    src: '/static-images/goals-view.png',
-    alt: 'Goals View',
-    label: 'Goals',
-  },
-  {
-    id: 3,
-    src: '/static-images/schedules-view.png',
-    alt: 'Schedules View',
-    label: 'Schedules',
-  },
-  {
-    id: 4,
-    src: '/static-images/shopping-list-view.png',
-    alt: 'Shopping List View',
-    label: 'Shopping',
-  },
-];
-
 // ─────────────────────────────────────────────────────────────────────────────
 const HeroSection = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [activeImg, setActiveImg] = useState(0);
-
-  useEffect(() => {
-    const handle = () => setIsMobile(window.innerWidth < 768);
-    handle();
-    window.addEventListener('resize', handle);
-    return () => window.removeEventListener('resize', handle);
-  }, []);
-
-  // Auto-cycle active image thumbnail
-  useEffect(() => {
-    const t = setInterval(
-      () => setActiveImg((p) => (p + 1) % featureImages.length),
-      3000,
-    );
-    return () => clearInterval(t);
-  }, []);
-
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    renderMode: 'performance',
-    drag: true,
-    created(s) {
-      s.moveToIdx(5, true, animation);
-    },
-    updated(s) {
-      s.moveToIdx(s.track.details.abs + 5, true, animation);
-    },
-    animationEnded(s) {
-      s.moveToIdx(s.track.details.abs + 5, true, animation);
-    },
-  });
-
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-[#040d1a]">
       {/* ── Layered background ── */}
@@ -244,118 +151,6 @@ const HeroSection = () => {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* ── Visual hero area ── */}
-        <div className="relative">
-          {!isMobile ? (
-            /* ── Desktop: main preview + thumbnail strip ── */
-            <div className="flex flex-col items-center gap-6">
-              {/* Main screenshot */}
-              <div className="relative w-full max-w-3xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-[0_40px_120px_-20px_rgba(6,182,212,0.25)] bg-white/5 backdrop-blur-md aspect-video">
-                {featureImages.map((img, i) => (
-                  <Image
-                    key={img.id}
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(max-width: 1280px) 80vw, 900px"
-                    className={`object-cover transition-opacity duration-700 ${i === activeImg ? 'opacity-100' : 'opacity-0'}`}
-                    priority={i === 0}
-                  />
-                ))}
-                {/* Browser chrome illusion */}
-                <div className="absolute top-0 left-0 right-0 h-8 bg-black/40 backdrop-blur-sm flex items-center px-4 gap-2 border-b border-white/10 z-10">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
-                  <span className="mx-auto text-[10px] text-slate-400 tracking-wider">
-                    myorbit.netlify.app
-                  </span>
-                </div>
-                {/* Feature label overlay */}
-                <div className="absolute bottom-4 left-4 z-10 px-3 py-1 rounded-full bg-black/50 border border-white/20 text-xs text-white font-medium backdrop-blur-sm">
-                  {featureImages[activeImg].label}
-                </div>
-              </div>
-
-              {/* Thumbnail strip */}
-              <div className="flex gap-3">
-                {featureImages.map((img, i) => (
-                  <button
-                    key={img.id}
-                    onClick={() => setActiveImg(i)}
-                    className={`relative w-20 h-14 rounded-xl overflow-hidden border transition-all duration-300 ${
-                      i === activeImg
-                        ? 'border-cyan-400 scale-105 shadow-lg shadow-cyan-400/30'
-                        : 'border-white/15 opacity-60 hover:opacity-90'
-                    }`}
-                  >
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      sizes="80px"
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-
-              {/* Floating pills */}
-              <FloatingPill
-                icon="🔔"
-                label="Reminder sent"
-                sub="Meet Ali · in 30 mins"
-                style={{ top: '60px', right: '-20px' }}
-              />
-              <FloatingPill
-                icon="🤖"
-                label="AI suggested 4 steps"
-                sub="Task: Plan Q3 budget"
-                style={{ bottom: '100px', left: '-20px' }}
-              />
-            </div>
-          ) : (
-            /* ── Mobile: keen-slider ── */
-            <div
-              ref={sliderRef}
-              className="keen-slider w-full rounded-2xl overflow-hidden"
-            >
-              {featureImages.map((img) => (
-                <div
-                  key={img.id}
-                  className="keen-slider__slide rounded-2xl overflow-hidden bg-white/10 border border-white/20 shadow-xl aspect-square"
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    width={400}
-                    height={400}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* ── Quick-add showcase ── */}
-        <div className="mt-12 max-w-xl mx-auto bg-white/5 border border-white/15 backdrop-blur-xl rounded-2xl p-5 shadow-2xl">
-          <p className="text-xs text-slate-400 uppercase tracking-widest mb-3">
-            Quick Add — type naturally, AI does the rest
-          </p>
-          <div className="rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-slate-100 text-sm flex items-center gap-2">
-            <span className="text-cyan-300 font-semibold">@schedule</span>
-            <span>Meet Ali at 5pm + remind me 30 mins before</span>
-            <span className="ml-auto text-slate-500 text-xs">⏎</span>
-          </div>
-          <div className="mt-3 rounded-xl bg-emerald-500/10 border border-emerald-400/20 px-4 py-3 text-sm">
-            <span className="text-emerald-400 font-semibold">✨ AI added:</span>
-            <span className="text-slate-200 ml-2">
-              Schedule created · WhatsApp reminder set · 3 steps suggested
-            </span>
-          </div>
         </div>
 
         {/* ── Feature chips ── */}

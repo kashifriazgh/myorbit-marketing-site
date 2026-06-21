@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, orderBy, getDocs, doc, updateDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { Mail, Phone, CheckCircle2, Circle, Eye, EyeOff, MessageSquare, Clock, User, X } from 'lucide-react';
+import { Mail, Phone, CheckCircle2, Circle, Eye, EyeOff, MessageSquare, Clock, User, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 interface Message {
@@ -139,6 +139,15 @@ export default function ViewMessages() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        <div className="mb-4">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-1.5 text-base font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Dashboard
+          </Link>
+        </div>
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">

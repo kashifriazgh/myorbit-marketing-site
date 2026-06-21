@@ -26,7 +26,7 @@ export default function About() {
           <p className="text-white/90 text-lg leading-relaxed">
             I found that many apps in the market don’t provide the local tone—they
             are designed for international users. In order to make an app that
-            preserves the necessities of locals, we created this one.
+            preserves the necessities of locals, I created this one.
           </p>
         </div>
 
@@ -34,8 +34,8 @@ export default function About() {
         <div className="space-y-6">
           <h2 className="text-2xl font-semibold text-cyan-200">Our Mission</h2>
           <p className="text-white/90 text-lg leading-relaxed">
-            To make the first ever Pakistan-based web app that leverages AI to
-            help users achieve higher productivity and manage their daily tasks
+            To make a Pakistan-based web app that leverages AI to
+            help people achieve higher productivity and manage their daily tasks
             effectively.
           </p>
         </div>
