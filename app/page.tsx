@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from './components/NavigationBar';
+import Motivation from './components/Motivation';
 import HeroSection from './components/HeroSection';
 import TargetAudience from './components/TargetAudience';
 import Pricing from './components/Pricing';
@@ -16,6 +17,7 @@ export default function Homepage() {
   return (
     <div>
       <Navigation />
+      <Motivation />
       <HeroSection />
       <InteractiveDemos />
       <FounderStorySection />
