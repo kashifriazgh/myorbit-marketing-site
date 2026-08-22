@@ -78,12 +78,12 @@ export default function Motivation() {
             💡 A Productivity Secret
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white leading-[1.2] tracking-tight mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-[1.2] tracking-tight mb-6">
             <span className="block text-slate-450 dark:text-slate-550 text-xs sm:text-sm font-bold tracking-widest uppercase font-mono mb-3">
               The Compound Effect
             </span>
             If you complete{" "}
-            <span className="relative inline-block px-3.5 py-1 mx-1 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 font-extrabold shadow-sm select-none">
+            <span className="relative inline-block px-3.5 py-1 mx-1 my-2 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 font-extrabold shadow-sm select-none">
               {"Today's Tasks,"}
               <span className="absolute -top-1.5 -right-1 text-xs select-none">✨</span>
             </span>
@@ -91,10 +91,11 @@ export default function Motivation() {
             {"you're already on your way to "}
             <span className="relative inline-block mt-1.5">
               <span className="relative z-10 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 bg-clip-text text-transparent font-extrabold">
-                consistent success! 🚀🎯
+                consistent success!
               </span>
               <span className="absolute bottom-1 left-0 w-full h-[6px] bg-gradient-to-r from-emerald-400/30 to-cyan-400/30 rounded-full blur-[1px] -z-10"></span>
             </span>
+            {" 🚀"}
           </h1>
 
           <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-8 max-w-md">
@@ -103,14 +104,14 @@ export default function Motivation() {
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <a 
-              href="#pricing"
+              href="https://myorbitdemo.netlify.app/"
               className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold px-8 py-4 rounded-2xl hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-lg shadow-emerald-500/20 dark:shadow-emerald-500/40"
             >
-              Claim founding member access
+              Try MyOrbit Now!
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a 
-              href="#features"
+              href="#how-it-works"
               className="inline-flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-350 font-semibold px-8 py-4 rounded-2xl hover:border-emerald-500 dark:hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-300"
             >
               See how it works

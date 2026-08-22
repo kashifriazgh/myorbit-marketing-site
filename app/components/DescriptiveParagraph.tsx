@@ -98,6 +98,35 @@ const DescriptiveParagraph = () => {
             information are all captured in one place.&#39;
           </p>
         </motion.div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-12"
+        >
+          <a
+            href="https://myorbitdemo.netlify.app"
+            className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-teal-600 text-white font-bold text-base shadow-xl shadow-teal-500/20 hover:bg-teal-500 hover:shadow-teal-500/40 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            Try a Quick Demo
+            <svg
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

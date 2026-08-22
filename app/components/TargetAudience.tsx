@@ -109,6 +109,29 @@ export default function TargetAudience() {
             );
           })}
         </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center mt-12 md:mt-16">
+          <a
+            href="https://myorbitdemo.netlify.app"
+            className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-cyan-500 text-slate-950 font-bold text-base shadow-xl shadow-cyan-500/20 hover:bg-cyan-400 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            Try a Quick Demo
+            <svg
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );

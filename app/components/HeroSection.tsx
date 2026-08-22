@@ -132,10 +132,10 @@ const HeroSection = () => {
             </svg>
           </a>
           <a
-            href="#features"
+            href="https://myorbitdemo.netlify.app/"
             className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-2xl border border-white/25 text-white font-semibold text-base hover:bg-white/10 transition-all duration-200"
           >
-            See everything inside
+            Explore MyOrbit (Demo) - No Signup Required!
           </a>
         </div>
 
