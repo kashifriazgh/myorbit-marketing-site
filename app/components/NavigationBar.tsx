@@ -102,11 +102,19 @@ const Navigation = () => {
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
+            <a
+              href="https://orbit-smart-1.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex px-3.5 py-2 rounded-xl border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-500/10 text-sm font-semibold transition"
+            >
+              See Live Demo
+            </a>
             <Link
               href="#contact"
               className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white text-sm font-semibold shadow-lg shadow-emerald-500/30 hover:opacity-90 transition"
             >
-              Talk to us
+              Contact Us
             </Link>
 
             {/* --- Mobile Menu Button --- */}
@@ -135,12 +143,21 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            <a
+              href="https://orbit-smart-1.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="px-4 py-3 rounded-xl border border-emerald-500/50 text-emerald-600 dark:text-emerald-300 font-semibold text-center hover:bg-emerald-500/10 transition"
+            >
+              See Live Demo
+            </a>
             <Link
               href="#contact"
               onClick={() => setMenuOpen(false)}
               className="px-4 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold text-center shadow-lg shadow-emerald-500/30"
             >
-              Book a call
+              Contact Us
             </Link>
           </div>
         </div>

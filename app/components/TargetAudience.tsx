@@ -110,13 +110,15 @@ export default function TargetAudience() {
           })}
         </div>
 
-        {/* CTA Button */}
-        <div className="flex justify-center mt-12 md:mt-16">
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 md:mt-16">
           <a
-            href="https://myorbitdemo.netlify.app"
+            href="https://orbit-smart-1.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-cyan-500 text-slate-950 font-bold text-base shadow-xl shadow-cyan-500/20 hover:bg-cyan-400 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-200"
           >
-            Try a Quick Demo
+            See Live Demo
             <svg
               className="w-4 h-4 group-hover:translate-x-1 transition-transform"
               fill="none"
@@ -130,6 +132,12 @@ export default function TargetAudience() {
                 d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
               />
             </svg>
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/20 bg-white/10 text-white font-bold text-base hover:bg-white/20 transition-all duration-200"
+          >
+            Contact Us
           </a>
         </div>
       </div>

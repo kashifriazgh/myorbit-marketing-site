@@ -10,17 +10,15 @@ export default function Pricing() {
       title: 'App Setup',
       badge: 'Introductory Offer',
       description:
-        'We set up your personal productivity workspace — connected to your own Firebase database, AI integrated, and hosted on Netlify under your account. You own everything.',
+        'A set up of your personal productivity workspace — connected to Firebase database, integrated AI & Whatsapp API and hosted on Netlify plateform',
       originalPrice: '₨ 3,000',
-      price: '₨ 500',
+      price: '500 PKR / year',
       note: 'Limited time · Limited users',
       icon: <Wrench className="w-10 h-10 text-emerald-600" />,
       highlight: true,
       features: [
-        'Full app deployed on your domain',
-        'Your own Firebase database',
-        'AI integrated',
-        'One-time payment — no recurring fee',
+        'Integrated AI & WhatsApp API',
+        'Yearly payment - no monthly recurring fee',
       ],
       cta: 'Get my workspace',
     },
@@ -54,13 +52,23 @@ export default function Pricing() {
           pricing
         </span>
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          One-time setup. Optional monthly power-up.
+          Annual workspace setup. Optional monthly power-up.
         </h2>
         <p className="text-gray-600 dark:text-gray-300 text-lg">
-          Pay once to get your full personal workspace running. Add the
+          Pay 500 PKR / year to get your full personal workspace running. Add the
           automation plan only when you want WhatsApp reminders and background
           features.
         </p>
+        <div className="mt-6 flex justify-center gap-4">
+          <a
+            href="https://orbit-smart-1.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 font-semibold text-sm hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition"
+          >
+            See Live Demo
+          </a>
+        </div>
       </div>
 
       <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-2">
@@ -138,16 +146,26 @@ export default function Pricing() {
               </ul>
             </div>
 
-            <a
-              href="#contact"
-              className={`mt-8 inline-flex items-center justify-center w-full px-6 py-3 rounded-2xl font-semibold transition ${
-                plan.highlight
-                  ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/40 hover:opacity-90'
-                  : 'border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800'
-              }`}
-            >
-              {plan.cta}
-            </a>
+            <div className="mt-8 flex flex-col gap-3">
+              <a
+                href="#contact"
+                className={`inline-flex items-center justify-center w-full px-6 py-3 rounded-2xl font-semibold transition ${
+                  plan.highlight
+                    ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/40 hover:opacity-90'
+                    : 'border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+              >
+                {plan.cta}
+              </a>
+              <a
+                href="https://orbit-smart-1.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-6 py-2.5 rounded-2xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 transition"
+              >
+                See Live Demo →
+              </a>
+            </div>
           </div>
         ))}
       </div>
@@ -155,10 +173,8 @@ export default function Pricing() {
       {/* Bottom note */}
       <div className="max-w-3xl mx-auto mt-10 p-6 rounded-3xl border border-yellow-300 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-900/20 text-gray-800 dark:text-gray-100">
         <p className="text-base leading-relaxed">
-          <strong>Your data stays yours.</strong> The app runs on your own
-          Firebase and Netlify accounts. We do not store or access your personal
-          data. The ₨200/month plan covers the background service that keeps
-          your automations running — no hidden charges, no surprises.
+          The ₨200/month plan covers the background service that keeps your
+          automations running — no hidden charges, no surprises.
         </p>
       </div>
     </section>
