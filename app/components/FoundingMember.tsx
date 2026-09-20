@@ -1,4 +1,4 @@
-import { Heart, Zap, Code2, Rocket, ArrowRight } from "lucide-react";
+import { Heart, Zap, Code2, Rocket, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 const flowNodes = [
@@ -105,7 +105,7 @@ export default function FoundingMemberSection() {
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
         </a>
         <a
-          href="https://orbit-smart-1.netlify.app"
+          href="https://myorbit-smart-1.netlify.app"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex w-full items-center justify-center rounded-2xl border border-teal-500/40 text-teal-600 dark:text-teal-300 font-bold px-7 py-4 text-sm hover:bg-teal-500/10 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:w-auto text-center"
@@ -117,6 +117,23 @@ export default function FoundingMemberSection() {
       <p className="relative mx-auto mt-6 max-w-md text-center text-xs text-slate-500 dark:text-slate-400">
         PKR 500 / year subscription. Full app access from day one.
       </p>
+
+      {/* Colored Notice Card */}
+      <div className="relative mx-auto mt-8 max-w-2xl rounded-3xl border border-teal-500/30 bg-teal-500/10 dark:bg-teal-950/40 p-5 sm:p-6 backdrop-blur-md shadow-md">
+        <div className="flex items-start gap-3.5">
+          <div className="p-2 rounded-xl bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/30 shrink-0 mt-0.5">
+            <Sparkles className="h-5 w-5 animate-pulse text-teal-500" />
+          </div>
+          <div className="space-y-1 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-200">
+            <span className="block font-black uppercase tracking-wider text-teal-700 dark:text-teal-300 text-xs">
+              🎁 Bonus Access Included
+            </span>
+            <p>
+              By subscribing to MyOrbit today, you automatically unlock the access to our upcoming <strong className="text-teal-700 dark:text-teal-300">Web App for planning</strong> (special discounted price for you) — specially crafted for students, freelancers, and professionals to manage routines, work, and revenue in a smarter way.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

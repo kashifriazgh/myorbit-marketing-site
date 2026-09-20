@@ -138,7 +138,7 @@ export default function OverdueTasksFeature() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold tracking-widest uppercase shadow-sm">
             <AlertTriangle className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
-            Overdue Safeguard · Never Forget A Task
+            Overdue tasks never hides
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
             Nothing gets quietly{" "}
@@ -230,23 +230,23 @@ export default function OverdueTasksFeature() {
                       } p-3.5 sm:p-4 space-y-3`}
                     >
                       {/* Main Task Header Row */}
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                        <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
                           {/* Checkbox button */}
                           <button
                             type="button"
                             onClick={() => toggleTaskCompleted(task.id)}
-                            className={`w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
+                            className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 transition-all ${
                               task.completed
                                 ? "bg-emerald-500 border-emerald-500 text-slate-950 shadow-sm"
                                 : "border-rose-500/50 bg-slate-900 hover:border-emerald-400"
                             }`}
                           >
-                            {task.completed && <Check className="w-4 h-4 stroke-[3]" />}
+                            {task.completed && <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />}
                           </button>
 
                           <div className="min-w-0 flex-1">
-                            <div className="flex items-center gap-2 flex-wrap">
+                            <div className="flex items-center gap-1.5 flex-wrap">
                               {task.workStarted && !task.completed && (
                                 <span className="relative flex h-2 w-2">
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
@@ -254,7 +254,7 @@ export default function OverdueTasksFeature() {
                                 </span>
                               )}
                               <span
-                                className={`text-xs sm:text-sm font-bold tracking-tight truncate ${
+                                className={`text-xs sm:text-sm font-bold tracking-tight break-words sm:truncate ${
                                   task.completed
                                     ? "line-through text-slate-500"
                                     : "text-white"
@@ -264,11 +264,11 @@ export default function OverdueTasksFeature() {
                               </span>
                             </div>
 
-                            {/* Tags Row */}
-                            <div className="flex items-center gap-2 mt-1.5 flex-wrap text-[10px]">
+                            {/* Tags Row (Separate line on mobile for clear touch targets) */}
+                            <div className="flex items-center gap-1.5 mt-1 flex-wrap text-[10px]">
                               {/* Overdue Warning Tag */}
                               <span
-                                className={`px-2.5 py-0.5 rounded font-black uppercase flex items-center gap-1 ${
+                                className={`px-2 py-0.5 rounded font-black uppercase flex items-center gap-1 ${
                                   task.rescheduled
                                     ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
                                     : "bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse"
@@ -298,8 +298,8 @@ export default function OverdueTasksFeature() {
                           </div>
                         </div>
 
-                        {/* Primary Reschedule Button & Quick Icons */}
-                        <div className="flex items-center gap-2 shrink-0">
+                        {/* Primary Reschedule Button & Quick Icons on separate row on mobile */}
+                        <div className="flex items-center justify-between sm:justify-end gap-2 pt-2 sm:pt-0 border-t border-rose-500/15 sm:border-0 shrink-0">
                           <button
                             onClick={() => toggleRescheduled(task.id)}
                             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition shadow-md ${

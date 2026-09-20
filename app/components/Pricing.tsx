@@ -25,7 +25,7 @@ export default function Pricing() {
     {
       id: 2,
       title: 'Automation & Reminders',
-      badge: 'Optional',
+      badge: '✨ And, this is just optional',
       description:
         'Keep your app fully active in the background — so reminders reach you, and your data stays up to date without you doing anything manually.',
       price: '₨ 200 / month',
@@ -61,7 +61,7 @@ export default function Pricing() {
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <a
-            href="https://orbit-smart-1.netlify.app"
+            href="https://myorbit-smart-1.netlify.app"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 font-semibold text-sm hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition"
@@ -84,10 +84,10 @@ export default function Pricing() {
             <div className="flex flex-col items-center text-center space-y-4">
               {/* Badge */}
               <span
-                className={`text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full ${
+                className={`text-xs font-bold px-3.5 py-1 rounded-full border shadow-xs ${
                   plan.highlight
-                    ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300'
-                    : 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400'
+                    ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 border-emerald-300/50 uppercase tracking-widest'
+                    : 'bg-amber-500/10 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300 border-amber-500/30 tracking-wide font-extrabold'
                 }`}
               >
                 {plan.badge}
@@ -158,7 +158,7 @@ export default function Pricing() {
                 {plan.cta}
               </a>
               <a
-                href="https://orbit-smart-1.netlify.app"
+                href="https://myorbit-smart-1.netlify.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full px-6 py-2.5 rounded-2xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 transition"
@@ -174,7 +174,7 @@ export default function Pricing() {
       <div className="max-w-3xl mx-auto mt-10 p-6 rounded-3xl border border-yellow-300 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-900/20 text-gray-800 dark:text-gray-100">
         <p className="text-base leading-relaxed">
           The ₨200/month plan covers the background service that keeps your
-          automations running — no hidden charges, no surprises.
+          automations running — no hidden charges, no surprises. Moreover, this price may slightly changed over the time if there is any rise in cloud services and AI model API charges.
         </p>
       </div>
     </section>

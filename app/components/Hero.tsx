@@ -822,7 +822,7 @@ export default function Hero() {
           
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://orbit-smart-1.netlify.app"
+              href="https://myorbit-smart-1.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-emerald-500/25 hover:opacity-95 hover:scale-[1.02] transition"

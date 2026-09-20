@@ -113,7 +113,7 @@ export default function TargetAudience() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 md:mt-16">
           <a
-            href="https://orbit-smart-1.netlify.app"
+            href="https://myorbit-smart-1.netlify.app"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-cyan-500 text-slate-950 font-bold text-base shadow-xl shadow-cyan-500/20 hover:bg-cyan-400 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-200"

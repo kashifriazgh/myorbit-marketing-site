@@ -103,7 +103,7 @@ const Navigation = () => {
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <a
-              href="https://orbit-smart-1.netlify.app"
+              href="https://myorbit-smart-1.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden lg:inline-flex px-3.5 py-2 rounded-xl border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-500/10 text-sm font-semibold transition"
@@ -144,7 +144,7 @@ const Navigation = () => {
               </Link>
             ))}
             <a
-              href="https://orbit-smart-1.netlify.app"
+              href="https://myorbit-smart-1.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
