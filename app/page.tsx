@@ -5,6 +5,7 @@ import OrbitYou from './components/OrbitYou';
 import PillarsShowcase from './components/PillarsShowcase';
 import ReminderFeature from './components/ReminderFeature';
 import AiFeatureShowcase from './components/AiFeatureShowcase';
+import AppGalleryShowcase from './components/AppGalleryShowcase';
 import TargetAudience from './components/TargetAudience';
 import Reviews from './components/Reviews';
 import Pricing from './components/Pricing';
@@ -18,6 +19,7 @@ export default function Homepage() {
       <Navigation />
       <Hero />
       <AiFeatureShowcase />
+      <AppGalleryShowcase />
       <OrbitYou />
       <PillarsShowcase />
       <ReminderFeature />

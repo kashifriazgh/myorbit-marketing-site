@@ -10,14 +10,15 @@ export default function Pricing() {
       title: 'App Setup',
       badge: 'Introductory Offer',
       description:
-        'A set up of your personal productivity workspace — connected to Firebase database, integrated AI & Whatsapp API and hosted on Netlify plateform',
+        'A set up of your personal productivity workspace — connected to Firebase database, integrated AI engine, basic push notifications, and hosted on Netlify platform',
       originalPrice: '₨ 3,000',
       price: '500 PKR / year',
       note: 'Limited time · Limited users',
       icon: <Wrench className="w-10 h-10 text-emerald-600" />,
       highlight: true,
       features: [
-        'Integrated AI & WhatsApp API',
+        'Integrated AI Engine & Personal Workspace',
+        'Basic Push Notifications (free mode with limits)',
         'Yearly payment - no monthly recurring fee',
       ],
       cta: 'Get my workspace',
@@ -27,16 +28,16 @@ export default function Pricing() {
       title: 'Automation & Reminders',
       badge: '✨ And, this is just optional',
       description:
-        'Keep your app fully active in the background — so reminders reach you, and your data stays up to date without you doing anything manually.',
+        'Keep your app fully active in the background — receive high-proficiency push notifications, background AI working, and continuous automation.',
       price: '₨ 200 / month',
       note: 'First month free',
       icon: <Zap className="w-10 h-10 text-blue-500" />,
       highlight: false,
       features: [
-        'WhatsApp reminders for tasks & schedules',
-        'Browser push notifications',
-        'Background AI preparing your daily data',
-        'Always-on service, no manual triggers',
+        'High-proficiency Push Notifications (more reliable & frequent)',
+        'Background AI working & daily data preparation',
+        'Always-on service with background automation',
+        'Basic Push Notifications available free with limits',
       ],
       cta: 'Add after setup',
     },
@@ -56,8 +57,7 @@ export default function Pricing() {
         </h2>
         <p className="text-gray-600 dark:text-gray-300 text-lg">
           Pay 500 PKR / year to get your full personal workspace running. Add the
-          automation plan only when you want WhatsApp reminders and background
-          features.
+          automation plan when you want push notifications with higher proficiency, background AI working, and continuous background service.
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <a
@@ -173,8 +173,7 @@ export default function Pricing() {
       {/* Bottom note */}
       <div className="max-w-3xl mx-auto mt-10 p-6 rounded-3xl border border-yellow-300 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-900/20 text-gray-800 dark:text-gray-100">
         <p className="text-base leading-relaxed">
-          The ₨200/month plan covers the background service that keeps your
-          automations running — no hidden charges, no surprises. Moreover, this price may slightly changed over the time if there is any rise in cloud services and AI model API charges.
+          The ₨200/month plan covers background AI working, high-proficiency push notifications, and automated services that keep your app active 24/7 — no hidden charges, no surprises. Basic push notifications remain available in free mode with usage limits.
         </p>
       </div>
     </section>

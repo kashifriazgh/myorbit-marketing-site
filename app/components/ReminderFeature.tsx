@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Bell, Smartphone, MessageSquare } from "lucide-react";
+import { Smartphone, MessageSquare } from "lucide-react";
 
 export default function ReminderFeature() {
   // Interactive state for Quick Reminders demo
@@ -40,16 +40,16 @@ export default function ReminderFeature() {
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 dark:text-white">🔔 Push Notifications</h3>
-                    <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">100% Free - with shared users</span>
+                    <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">Free (with limits) · High proficiency with ₨200/mo</span>
                   </div>
                 </div>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-300">
-                Instant alerts for your daily schedules, tasks, and overdue items.
+                Instant alerts for your daily schedules, tasks, and overdue items. Free tier includes basic push alerts with limits, while ₨200/mo subscription unlocks high-proficiency notifications and background AI working.
               </p>
             </div>
 
-            {/* Channel 2: WhatsApp Reminders */}
+            {/* Channel 2: WhatsApp Messaging */}
             <div className="rounded-3xl border border-emerald-500/40 bg-emerald-500/5 p-6 shadow-xl space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -57,13 +57,13 @@ export default function ReminderFeature() {
                     <MessageSquare className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-900 dark:text-white">💬 WhatsApp Reminders</h3>
-                    <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">Premium feature</span>
+                    <h3 className="font-bold text-slate-900 dark:text-white">💬 WhatsApp Messaging</h3>
+                    <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">Custom Integration</span>
                   </div>
                 </div>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-300">
-                Send automated WhatsApp messages to yourself or relevant contact number (Limit applied /day).
+                Direct WhatsApp messaging integration available for custom setup and automated dispatch.
               </p>
             </div>
           </div>
