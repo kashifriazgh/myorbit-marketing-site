@@ -105,7 +105,7 @@ export default function FoundingMemberSection() {
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
         </a>
         <a
-          href="https://myorbit-smart-1.netlify.app"
+          href="https://myorbitdemo.netlify.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex w-full items-center justify-center rounded-2xl border border-teal-500/40 text-teal-600 dark:text-teal-300 font-bold px-7 py-4 text-sm hover:bg-teal-500/10 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:w-auto text-center"

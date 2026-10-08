@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import OverdueTasksFeature from "./OverdueTasksFeature";
 import {
   Calendar,
@@ -10,27 +9,19 @@ import {
   Target,
   Bell,
   Clock,
-  AlertTriangle,
-  ArrowRight,
   CheckCircle2,
-  Sparkles,
   RefreshCw,
   Edit3,
   TrendingUp,
-  Building2,
   DollarSign,
   Plus,
-  Zap,
   Layers,
-  Activity,
-  Award,
   Play,
   Pause,
   ChevronDown,
   ChevronUp,
   User,
   Check,
-  Briefcase,
 } from "lucide-react";
 
 interface DemoTaskStep {
@@ -255,6 +246,27 @@ export default function PillarsShowcase() {
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Plan your day down to the minute. Lock in dates, execution times, and durations with instant flexibility to edit or reschedule on the fly.
             </p>
+
+            {/* Schedules Checklist */}
+            <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800 space-y-2.5">
+              <span className="text-xs font-black uppercase tracking-wider text-cyan-600 dark:text-cyan-400">
+                Key Schedules Capabilities
+              </span>
+              <ul className="space-y-2">
+                {[
+                  "Make schedules of today and any Next coming day",
+                  "Set Push Notification Reminders",
+                  "Edit, Update and delete schedule anytime",
+                  "Hourly separated schedules view",
+                  "Iconic status of complete / not complete",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-500 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Schedule UI Mockup */}
@@ -585,6 +597,28 @@ export default function PillarsShowcase() {
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Organize tasks with due dates, execution timers, sub-steps, priority levels, and assignees. With 5-day focus views and Overdue Safeguard protection, nothing slips through the cracks.
             </p>
+
+            {/* Todos Checklist */}
+            <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800 space-y-2.5">
+              <span className="text-xs font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                Key Todos Capabilities
+              </span>
+              <ul className="space-y-2">
+                {[
+                  "Create Tasks ToDo for today, tomorrow, next week or any future day",
+                  "Make a schedule within a task in just 'one click'",
+                  "Set Push Notification for reminders",
+                  "Create Steps and sub Steps",
+                  "Reschedule if not reach on time",
+                  "Over Due Tasks shown in a separate UI / section",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -614,6 +648,24 @@ export default function PillarsShowcase() {
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Break down complex ambitions into actionable milestones, daily schedules, connected tasks, and automated reminders.
             </p>
+
+            {/* Goals Checklist Badges */}
+            <div className="pt-2 flex flex-wrap justify-center gap-2.5">
+              {[
+                "Create goals across Finance, Health, Learning & Habit categories",
+                "Link Tasks and schedules directly with a goal",
+                "Each type of goal has its own dedicated layout design",
+                "Track progress ring and count check-in streaks",
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500/10 border border-sky-500/20 text-xs font-bold text-slate-800 dark:text-slate-200"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Income Goal Milestone Mockup (Inspired by IncomeTemplate.tsx & goals/[id]/page.tsx) */}
@@ -785,9 +837,9 @@ export default function PillarsShowcase() {
         </div>
 
         {/* ========================================================================= */}
-        {/* PILLAR 4: "GOALS THAT ACTUALLY CONNECT"                                   */}
+        {/* PILLAR 3 WORKFLOW INTEGRATION: "GOALS THAT ACTUALLY CONNECT"              */}
         {/* ========================================================================= */}
-        <div className="rounded-3xl border border-sky-400/30 bg-gradient-to-br from-sky-500/10 via-indigo-500/5 to-purple-500/10 p-8 sm:p-12 backdrop-blur-2xl space-y-8">
+        <div className="rounded-3xl border border-sky-400/30 bg-gradient-to-br from-sky-500/10 via-indigo-500/5 to-purple-500/10 p-6 sm:p-10 backdrop-blur-2xl space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <span className="px-3.5 py-1 rounded-full bg-sky-500/20 text-sky-700 dark:text-sky-300 text-xs font-bold uppercase tracking-widest">
               Integration Architecture
@@ -800,53 +852,91 @@ export default function PillarsShowcase() {
             </p>
           </div>
 
-          {/* Visual Connector Tree */}
-          <div className="max-w-xl mx-auto space-y-6">
-            <div className="flex justify-center">
-              <div className="px-6 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black text-base shadow-xl flex items-center gap-2">
-                <Target className="w-5 h-5" /> 🎯 Buy a Laptop
-              </div>
+          {/* Workflow Scenario (from GoalWorkflowShowcase) */}
+          <div className="max-w-4xl mx-auto space-y-6">
+            <div className="text-center">
+              <p className="text-base sm:text-lg text-slate-700 dark:text-slate-200 font-medium">
+                Let&apos;s suppose you want to buy a laptop. You will first need to set a goal with <span className="font-bold text-sky-500 dark:text-sky-400">&apos;saving&apos;</span> type.
+              </p>
             </div>
 
-            {/* Branch Lines */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-              <div className="p-3 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-emerald-500/40 space-y-1">
-                <div className="flex items-center justify-between text-[10px] font-bold uppercase text-slate-400">
-                  <span>📋 Todo</span>
-                  <span className="text-emerald-500 font-black flex items-center gap-0.5">
-                    <Check className="w-3 h-3 stroke-[3]" /> Done
-                  </span>
+            {/* Distinguished Goal Card */}
+            <div className="max-w-2xl mx-auto bg-gradient-to-r from-sky-600 via-indigo-600 to-cyan-600 rounded-2xl p-6 text-white shadow-xl flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shrink-0">
+                  <Target className="w-7 h-7" />
                 </div>
-                <span className="block text-xs font-semibold text-slate-900 dark:text-white line-through opacity-85">
-                  Research and compare different models
-                </span>
-              </div>
-
-              <div className="p-3 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-white/10 space-y-1">
-                <span className="block text-[10px] font-bold uppercase text-slate-400">📅 Schedule</span>
-                <span className="block text-xs font-semibold text-cyan-600 dark:text-cyan-300">
-                  Visit Saddar Market (tomorrow, 5:00 PM)
-                </span>
-              </div>
-
-              <div className="p-3 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-white/10 space-y-1">
-                <span className="block text-[10px] font-bold uppercase text-slate-400">💰 Finance</span>
-                <span className="block text-xs font-semibold text-emerald-600 dark:text-emerald-300">
-                  Plan Amount Deduction from HBL Account
-                </span>
+                <div>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full text-white/90">
+                    Saving Goal
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black mt-1 tracking-tight">
+                    Goal: Saving 50,000 for Laptop
+                  </h3>
+                </div>
               </div>
             </div>
 
-            <div className="flex justify-center">
-              <div className="px-6 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 font-extrabold text-sm flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Goal Progress: 15%
+            {/* 3 Connected Feature Cards Grid (Finance, Todo, Schedules) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Finance Card */}
+              <div className="bg-white/90 dark:bg-[#0a1a2e]/90 border border-emerald-500/30 rounded-2xl p-5 shadow-sm space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                  <DollarSign className="w-5 h-5" />
+                </div>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                  Finance
+                </h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                  A saving source will automatically be created in the finance section to track your laptop fund.
+                </p>
               </div>
+
+              {/* Todo Card */}
+              <div className="bg-white/90 dark:bg-[#0a1a2e]/90 border border-indigo-500/30 rounded-2xl p-5 shadow-sm space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+                  <CheckSquare className="w-5 h-5" />
+                </div>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                  Todo
+                </h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                  Research on different brands with specifications and compare pricing options.
+                </p>
+              </div>
+
+              {/* Schedules Card */}
+              <div className="bg-white/90 dark:bg-[#0a1a2e]/90 border border-cyan-500/30 rounded-2xl p-5 shadow-sm space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center">
+                  <Calendar className="w-5 h-5" />
+                </div>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                  Schedules
+                </h4>
+                <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-normal">
+                  <li className="flex items-start gap-2">
+                    <span className="w-4 h-4 rounded-full bg-cyan-500/15 text-cyan-500 text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">i</span>
+                    <span>Weekly Saving Update</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-4 h-4 rounded-full bg-cyan-500/15 text-cyan-500 text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">ii</span>
+                    <span>Call Ali to accompany while visiting Laptop Market</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Summary takeaway box */}
+            <div className="bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-slate-900/80 dark:to-slate-900/80 border border-sky-200/60 dark:border-slate-800 rounded-2xl p-5 text-center shadow-xs">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium leading-relaxed max-w-3xl mx-auto">
+                <strong>Zero Context Switching:</strong> You will have no need to create all above things by going into their respective sections. All will be able to create within a single goal. The Schedules and Todos will however, also be available on homepage at Schedules and Todos sections.
+              </p>
             </div>
           </div>
         </div>
 
         {/* ========================================================================= */}
-        {/* PILLAR 5: FINANCE — "KNOW WHERE YOUR MONEY ACTUALLY IS"                  */}
+        {/* PILLAR 4: FINANCE — "KNOW WHERE YOUR MONEY ACTUALLY IS"                  */}
         {/* ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-5 space-y-5">
@@ -863,6 +953,26 @@ export default function PillarsShowcase() {
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               One picture of your money. Track your sources, allocations, expenses, income, loans and liabilities without keeping everything in your head.
             </p>
+
+            {/* Finance Checklist */}
+            <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800 space-y-2.5">
+              <span className="text-xs font-black uppercase tracking-wider text-teal-600 dark:text-teal-400">
+                Key Finance Capabilities
+              </span>
+              <ul className="space-y-2">
+                {[
+                  "Maintain an overall Sum of Money",
+                  "Classify money with respect to Ownership and holdership",
+                  "Keep record of all loans and liabilities",
+                  "Keep record of incomes, expenses and all transactions",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    <CheckCircle2 className="w-4 h-4 text-teal-500 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Money Breakdown Mockup */}
@@ -935,7 +1045,7 @@ export default function PillarsShowcase() {
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://myorbit-smart-1.netlify.app"
+              href="https://myorbitdemo.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-teal-500/25 hover:opacity-95 transition"

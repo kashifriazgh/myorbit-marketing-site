@@ -799,7 +799,7 @@ export default function Hero() {
     <MotionConfig reducedMotion="user">
       <section
         ref={rootRef}
-        className="relative isolate overflow-hidden bg-slate-50 dark:bg-[#040d1a] px-4 pt-28 pb-20 sm:px-6 sm:pt-36 sm:pb-28 transition-colors duration-300"
+        className="relative isolate overflow-hidden bg-slate-50 dark:bg-[#040d1a] px-4 pt-12 pb-20 sm:px-6 sm:pt-16 sm:pb-28 transition-colors duration-300"
       >
         {/* backdrop */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
@@ -822,7 +822,7 @@ export default function Hero() {
           
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://myorbit-smart-1.netlify.app"
+              href="https://myorbitdemo.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-emerald-500/25 hover:opacity-95 hover:scale-[1.02] transition"

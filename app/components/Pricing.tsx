@@ -61,7 +61,7 @@ export default function Pricing() {
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <a
-            href="https://myorbit-smart-1.netlify.app"
+            href="https://myorbitdemo.netlify.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 font-semibold text-sm hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition"
@@ -158,7 +158,7 @@ export default function Pricing() {
                 {plan.cta}
               </a>
               <a
-                href="https://myorbit-smart-1.netlify.app"
+                href="https://myorbitdemo.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full px-6 py-2.5 rounded-2xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 transition"
