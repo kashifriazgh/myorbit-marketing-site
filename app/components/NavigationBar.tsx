@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
+import WhatsAppIcon from './WhatsAppIcon';
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -110,12 +111,15 @@ const Navigation = () => {
             >
               See Live Demo
             </a>
-            <Link
-              href="#contact"
-              className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white text-sm font-semibold shadow-lg shadow-emerald-500/30 hover:opacity-90 transition"
+            <a
+              href="https://wa.me/923231516371?text=Give%20me%20detail%20about%20the%20app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-semibold shadow-md shadow-emerald-500/20 transition"
             >
-              Contact Us
-            </Link>
+              <WhatsAppIcon className="w-4 h-4 fill-current" />
+              Contact on WhatsApp
+            </a>
 
             {/* --- Mobile Menu Button --- */}
             <button
@@ -152,13 +156,16 @@ const Navigation = () => {
             >
               See Live Demo
             </a>
-            <Link
-              href="#contact"
+            <a
+              href="https://wa.me/923231516371?text=Give%20me%20detail%20about%20the%20app"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="px-4 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold text-center shadow-lg shadow-emerald-500/30"
+              className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-center shadow-md"
             >
-              Contact Us
-            </Link>
+              <WhatsAppIcon className="w-5 h-5 fill-current" />
+              Contact on WhatsApp
+            </a>
           </div>
         </div>
       )}

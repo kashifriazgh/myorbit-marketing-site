@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Users, Briefcase, GraduationCap, Target } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 
 interface Audience {
   id: number;
@@ -134,10 +135,13 @@ export default function TargetAudience() {
             </svg>
           </a>
           <a
-            href="#contact"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/20 bg-white/10 text-white font-bold text-base hover:bg-white/20 transition-all duration-200"
+            href="https://wa.me/923231516371?text=Give%20me%20detail%20about%20the%20app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-base shadow-xl shadow-emerald-500/20 hover:-translate-y-0.5 transition-all duration-200"
           >
-            Contact Us
+            <WhatsAppIcon className="w-5 h-5 fill-current" />
+            Contact on WhatsApp
           </a>
         </div>
       </div>

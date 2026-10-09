@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import OverdueTasksFeature from "./OverdueTasksFeature";
+import WhatsAppIcon from "./WhatsAppIcon";
 import {
   Calendar,
   CheckSquare,
@@ -1053,10 +1054,13 @@ export default function PillarsShowcase() {
               See Live Demo
             </a>
             <a
-              href="#contact"
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white font-semibold text-sm sm:text-base hover:bg-slate-100 dark:hover:bg-slate-700 transition"
+              href="https://wa.me/923231516371?text=Give%20me%20detail%20about%20the%20app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-sm sm:text-base shadow-lg shadow-emerald-500/20 transition"
             >
-              Contact Us
+              <WhatsAppIcon className="w-5 h-5 fill-current" />
+              Contact on WhatsApp
             </a>
           </div>
         </div>

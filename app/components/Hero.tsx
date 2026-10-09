@@ -24,6 +24,7 @@ import {
   useTransform,
   MotionValue,
 } from "framer-motion";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 /* ------------------------------------------------------------------ */
 /*  Story config: edit copy, numbers and timing here                   */
@@ -830,10 +831,13 @@ export default function Hero() {
               See Live Demo
             </a>
             <a
-              href="#contact"
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl border border-slate-300 dark:border-white/15 bg-white dark:bg-white/5 text-slate-800 dark:text-white font-semibold text-sm sm:text-base hover:bg-slate-100 dark:hover:bg-white/10 transition"
+              href="https://wa.me/923231516371?text=Give%20me%20detail%20about%20the%20app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-sm sm:text-base shadow-lg shadow-emerald-500/20 hover:scale-[1.02] transition"
             >
-              Contact Us
+              <WhatsAppIcon className="w-5 h-5 fill-current" />
+              Contact on WhatsApp
             </a>
           </div>
         </div>

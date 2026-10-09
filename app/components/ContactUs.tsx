@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import WhatsAppIcon from './WhatsAppIcon';
 
 const ContactUs = () => {
   const [messageForm, setMessageForm] = useState({
@@ -244,19 +245,20 @@ const ContactUs = () => {
           </div>
 
           <div className="bg-white/5 border border-white/15 rounded-3xl p-8 flex flex-col items-center text-center gap-5 backdrop-blur">
-            <MessageSquare className="w-10 h-10 text-emerald-300" />
-            <h3 className="text-xl font-semibold">Chat on WhatsApp</h3>
+            <WhatsAppIcon className="w-10 h-10 text-[#25D366]" />
+            <h3 className="text-xl font-semibold">Contact on WhatsApp</h3>
             <p className="text-sm text-slate-200">
-              Need instant replies? Ping us on WhatsApp and we’ll respond
-              quickly during working hours.
+              Need instant replies? Ping us on WhatsApp (0323-1516371) and we’ll respond
+              quickly.
             </p>
             <a
-              href="https://wa.me/923164709208"
+              href="https://wa.me/923231516371?text=Give%20me%20detail%20about%20the%20app"
               target="_blank"
-              rel="noreferrer"
-              className="px-6 py-3 rounded-2xl bg-emerald-500 text-slate-900 font-semibold shadow-lg shadow-emerald-500/30 hover:translate-y-0.5 transition"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold shadow-lg shadow-emerald-500/30 hover:translate-y-0.5 transition"
             >
-              Open WhatsApp
+              <WhatsAppIcon className="w-5 h-5 fill-current" />
+              Contact on WhatsApp
             </a>
           </div>
 
