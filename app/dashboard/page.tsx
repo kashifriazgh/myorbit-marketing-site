@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { collection, query, orderBy, limit, getDocs, Timestamp } from 'firebase/firestore';
+import { collection, query, orderBy, limit, getDocs, Timestamp, doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import {
   Users,
@@ -21,7 +21,8 @@ import {
   PlusCircle,
   Activity,
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  BarChart3,
 } from 'lucide-react';
 import { calcOverallProgress, ClientData } from '@/app/dashboard/clients/client-form';
 
@@ -131,16 +132,31 @@ export default function MainDashboardHub() {
         const allCalls = allCallsSnapshot.docs.map(d => d.data() as CallRequest);
         const unreadCallsCount = allCalls.filter(c => !c.read && !c.done).length;
 
+        // 5. Fetch today's unique visitors count
+        const todayStr = new Date().toISOString().split('T')[0];
+        let todayUniqueVisitors = 0;
+        let todayPageViews = 0;
+        try {
+          const todayDoc = await getDoc(doc(db, 'daily_visitors', todayStr));
+          if (todayDoc.exists()) {
+            const data = todayDoc.data();
+            todayUniqueVisitors = Number(data.uniqueVisitors || 0);
+            todayPageViews = Number(data.totalPageViews || 0);
+          }
+        } catch (analyticsErr) {
+          console.warn('Analytics fetch warning:', analyticsErr);
+        }
+
         setClients(clientsData);
         setMessages(messagesData);
         setCallRequests(callRequestsData);
         
-        // We will store counts temporarily in states or compute them dynamically
-        // Since we want dynamic counts, let's attach them to custom state or state variables
         setStats({
           totalClients: allClientsCount,
           unreadMessages: unreadMessagesCount,
           unreadCalls: unreadCallsCount,
+          uniqueVisitorsToday: todayUniqueVisitors,
+          pageViewsToday: todayPageViews,
         });
 
       } catch (error) {
@@ -157,6 +173,8 @@ export default function MainDashboardHub() {
     totalClients: 0,
     unreadMessages: 0,
     unreadCalls: 0,
+    uniqueVisitorsToday: 0,
+    pageViewsToday: 0,
   });
 
   const handleLogout = async () => {
@@ -289,7 +307,7 @@ export default function MainDashboardHub() {
         </header>
 
         {/* Stats Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Total Clients Stat */}
           <div className="relative overflow-hidden bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-3xl p-6 shadow-sm hover:shadow-md transition">
             <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-500/10 rounded-bl-full filter blur-xl pointer-events-none" />
@@ -349,6 +367,34 @@ export default function MainDashboardHub() {
               Requires immediate action
             </p>
           </div>
+
+          {/* Unique Visitors Today Stat */}
+          <Link
+            href="/dashboard/analytics"
+            className="group relative overflow-hidden bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-3xl p-6 shadow-sm hover:shadow-md hover:border-cyan-500/40 transition flex flex-col justify-between"
+          >
+            <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-bl-full filter blur-xl pointer-events-none" />
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm font-bold tracking-wider text-slate-500 dark:text-slate-450 uppercase">
+                  Visitors Today
+                </span>
+                <div className="p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                  <BarChart3 className="w-6 h-6" />
+                </div>
+              </div>
+              <div className="text-3xl font-extrabold text-slate-900 dark:text-white flex items-baseline gap-2">
+                {stats.uniqueVisitorsToday}
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                  unique ({stats.pageViewsToday} views)
+                </span>
+              </div>
+            </div>
+            <p className="text-xs text-cyan-600 dark:text-cyan-400 mt-3 flex items-center gap-1.5 font-semibold group-hover:translate-x-0.5 transition-transform">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+              View Analytics Desk →
+            </p>
+          </Link>
         </section>
 
         {/* Primary Shortcuts */}
@@ -357,7 +403,7 @@ export default function MainDashboardHub() {
             Shortcut Zones
           </h2>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Shortcut: Client Manager */}
             <div className="group relative bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-white/8 rounded-3xl p-6 hover:border-cyan-500/30 dark:hover:bg-slate-900/60 transition shadow-sm hover:shadow-lg flex flex-col justify-between">
@@ -412,6 +458,31 @@ export default function MainDashboardHub() {
                   className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-450 hover:bg-purple-550 hover:text-white dark:hover:bg-purple-500/80 text-sm font-bold transition group-hover:translate-x-1 duration-300"
                 >
                   Open Inbox
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Shortcut: Analytics & Visitors */}
+            <div className="group relative bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-white/8 rounded-3xl p-6 hover:border-blue-500/30 dark:hover:bg-slate-900/60 transition shadow-sm hover:shadow-lg flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="p-3 w-fit rounded-2xl bg-blue-100/60 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400">
+                  <BarChart3 className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Daily Visitors Desk
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Accurate marketing analytics. Monitor daily unique reach, trends, device splits, and acquisition channels without duplicate skew.
+                </p>
+              </div>
+
+              <div className="mt-8 flex items-center justify-end pt-4 border-t border-slate-100 dark:border-white/5">
+                <Link
+                  href="/dashboard/analytics"
+                  className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-500/80 text-sm font-bold transition group-hover:translate-x-1 duration-300"
+                >
+                  View Status
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

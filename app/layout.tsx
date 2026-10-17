@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
+import AnalyticsTracker from "./components/AnalyticsTracker";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} ${outfit.variable} font-sans antialiased`}
       >
+        <AnalyticsTracker />
         {children}
       </body>
     </html>
